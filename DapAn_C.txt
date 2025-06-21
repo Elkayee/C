@@ -1,0 +1,4793 @@
+STT	BaiToan	Code_C	"?? BÀI T?P 1
+Vi?t ch??ng trình tính th? tích hình chóp c?t ??u có di?n tích ?áy l?n S, di?n tích ?áy nh? s và chi?u cao h. Th? tích hình chóp c?t ??u ???c xác ??nh b?i công th?c:
+V=13?h?(S+Ss+s)V = \frac{1}{3} * h * (S + \sqrt{Ss} + s)V=31?h?(S+Ss+s) 
+(di?n gi?i công th?c: m?t ph?n ba * chi?u cao h * t?ng di?n tích ?áy l?n, di?n tích ?áy nh? và c?n b?c hai tích di?n tích ?áy l?n và ?áy nh?)
+________________________________________
+Mô t? d? li?u testcase:
+•	Input: G?m T+1 dòng; dòng ??u tiên là s? l??ng testcase T; T dòng ti?p theo, m?i dòng g?m giá tr? th?c S, s và h t??ng ?ng d? li?u c?a m?t testcase.
+•	Output: K?t qu? c?a m?i testcase trên m?t hàng, in 02 ch? s? sau d?u ph?y. N?u không tính ???c thì in ra ND.
+Minh h?a d? li?u testcase:
+Input:
+1
+2.0 2.0 1.5
+Output:
+3.00
+? Code C:
+#include <stdio.h>
+#include <math.h>
+int main() {
+    int T;
+    scanf(""%d"", &T);
+    while (T--) {
+        double S, s, h;
+        if (scanf(""%lf %lf %lf"", &S, &s, &h) != 3 || S < 0 || s < 0 || h < 0) {
+            printf(""ND\n"");
+            continue;
+        }
+        double V = (1.0 / 3.0) * h * (S + sqrt(S * s) + s);
+        printf(""%.2lf\n"", V);
+  }
+    return 0;
+}
+________________________________________
+?? BÀI T?P 2
+Cho m?t ma tr?n các s? nguyên A kích th??c m×n. Ng??i ta th?c hi?n duy?t các hàng và c?t ngoài cùng t? m?t v? trí cho tr??c theo m?t chi?u nh?t ??nh. D?c theo ???ng duy?t, li?t kê t?t c? các s? nguyên t? theo th? t? duy?t.
+V? trí ban ??u t?i góc trên bên ph?i (hàng 0, c?t n?1) và duy?t theo chi?u ng??c chi?u kim ??ng h?.
+Mô t? d? li?u testcase:
+•	Input: Dòng ??u tiên là s? l??ng b? testcase T; T*(m+1) dòng ti?p theo là d? li?u các b? testcase; m?i b? testcase g?m m+1 hàng, trong ?ó hàng ??u tiên là giá tr? m và n, m hàng ti?p theo, m?i hàng g?m n ph?n t? t??ng ?ng v?i hàng c?a ma tr?n.
+•	Output: K?t qu? m?i testcase trên m?t hàng.
+Minh h?a d? li?u testcase:
+Input:
+1
+3 3
+1 2 3
+4 5 6
+7 8 9
+Output:
+327
+? Code C:
+#include <stdio.h>
+int main() {
+    int T;
+    scanf(""%d"", &T);
+    while (T--) {
+        int m, n;
+        scanf(""%d %d"", &m, &n);
+        int A[100][100]; 
+        for (int i = 0; i < m; ++i)
+            for (int j = 0; j < n; ++j)
+                scanf(""%d"", &A[i][j]);
+        for (int i = 0; i < m; ++i)
+            printf(""%d"", A[i][n - 1]);
+        for (int j = n - 2; j >= 0; --j)
+            printf(""%d"", A[m - 1][j]);
+        for (int j = 1; j < n - 1; ++j)
+            printf(""%d"", A[0][j]);
+        printf(""\n"");
+    }
+    return 0;
+}
+?? BÀI T?P 3
+Tính di?n tích hình ch? nh?t
+Yêu c?u:
+1.	Vi?t ch??ng trình tính di?n tích hình ch? nh?t v?i các c?nh a, b.
+2.	Ch??ng trình c?n x? lý nhi?u test case.
+3.	Input:
+o	Dòng ??u tiên là s? M - s? l??ng test case.
+o	M dòng ti?p theo, m?i dòng ch?a hai giá tr? a, b.
+4.	Output:
+o	K?t qu? c?a m?i test case trên m?t dòng. N?u không tính ???c (a ho?c b âm) thì in ""MD"".
+5.	Ví d?:
+o	Input:
+2
+1 1
+2 3
+o	Output:
+1.00
+6.00
+? Code C:
+#include <stdio.h>
+
+int main(void) {
+    int t;
+    scanf(""%d"", &t);
+    while (t--) {
+        float a, b;
+        scanf(""%f %f"", &a, &b);
+        if (a < 0 || b < 0) {
+            printf(""MD\n"");
+        }
+        else {
+            printf(""%.2f\n"", a * b);
+        }
+    }
+    return 0;
+}
+"									
+1	Tính chu vi và di?n tích hình ch? nh?t.	"#include <stdio.h>
+int main() {
+    float dai, rong;
+    scanf(""%f%f"", &dai, &rong);
+    printf(""Chu vi: %.2f\n"", 2 * (dai + rong));
+    printf(""Dien tich: %.2f\n"", dai * rong);
+    return 0;
+}
+"										
+2	Tính di?n tích hình tam giác khi bi?t 3 c?nh.	"#include <stdio.h>
+#include <math.h>
+
+int main() {
+    float a, b, c;
+    scanf(""%f%f%f"", &a, &b, &c);
+    if (a + b > c && a + c > b && b + c > a) {
+        float p = (a + b + c) / 2;
+        float s = sqrt(p * (p - a) * (p - b) * (p - c));
+        printf(""Dien tich: %.2f\n"", s);
+    } else {
+        printf(""Ba canh khong tao thanh tam giac\n"");
+    }
+    return 0;
+}
+"										
+3	Tính giai th?a c?a m?t s? nguyên n.	"#include <stdio.h>
+
+int main() {
+    int n;
+    scanf(""%d"", &n);
+    if (n < 0) {
+        printf(""Khong tinh duoc giai thua\n"");
+        return 0;
+    }
+    long long gt = 1;
+    for (int i = 2; i <= n; ++i)
+        gt *= i;
+    printf(""Giai thua: %lld\n"", gt);
+    return 0;
+}
+"										
+4	Tính t?ng các ch? s? c?a m?t s? nguyên.	"#include <stdio.h>
+
+int main() {
+    int n;
+    scanf(""%d"", &n);
+    int sum = 0;
+    int temp = n < 0 ? -n : n;
+    while (temp > 0) {
+        sum += temp % 10;
+        temp /= 10;
+    }
+    printf(""Tong cac chu so: %d\n"", sum);
+    return 0;
+}
+"										
+5	??i nhi?t ?? t? ?? C sang ?? F và ng??c l?i.	"#include <stdio.h>
+
+int main() {
+    float temp;
+    char unit;
+    printf(""Nh?p nhi?t ?? và ??n v? (C ho?c F): "");
+    scanf(""%f %c"", &temp, &unit);
+    if (unit == 'C' || unit == 'c') {
+        printf(""%.2f°C = %.2f°F\n"", temp, (temp * 9 / 5) + 32);
+    } else if (unit == 'F' || unit == 'f') {
+        printf(""%.2f°F = %.2f°C\n"", temp, (temp - 32) * 5 / 9);
+    } else {
+        printf(""??n v? không h?p l?.\n"");
+    }
+    return 0;
+}"										
+6	"Cho m?t s? nguyên N, in ra s? ??o ng??c ch? s? c?a s? ?ã cho."	"#include <stdio.h>
+
+int main() {
+    int n, reversed = 0;
+    scanf(""%d"", &n);
+    while (n != 0) {
+        reversed = reversed * 10 + n % 10;
+        n /= 10;
+    }
+    printf(""S? ??o ng??c: %d\n"", reversed);
+    return 0;
+}"										
+7	Ki?m tra m?t s? có ph?i là s? nguyên t?.	"#include <stdio.h>
+
+int main() {
+    int n, isPrime = 1;
+    scanf(""%d"", &n);
+    if (n <= 1) {
+        isPrime = 0;
+    } else {
+        for (int i = 2; i * i <= n; i++) {
+            if (n % i == 0) {
+                isPrime = 0;
+                break;
+            }
+        }
+    }
+    printf(isPrime ? ""%d là s? nguyên t?.\n"" : ""%d không là s? nguyên t?.\n"", n);
+    return 0;
+}"										
+8	Tính t?ng các s? l? t? 1 ??n n.	"#include <stdio.h>
+
+int main() {
+    int n, sum = 0;
+    scanf(""%d"", &n);
+    for (int i = 1; i <= n; i += 2) {
+        sum += i;
+    }
+    printf(""T?ng các s? l? t? 1 ??n %d: %d\n"", n, sum);
+    return 0;
+}"										
+9	Tính t?ng các s? ch?n t? 1 ??n n.	"#include <stdio.h>
+
+int main() {
+    int n, sum = 0;
+    scanf(""%d"", &n);
+    for (int i = 2; i <= n; i += 2) {
+        sum += i;
+    }
+    printf(""T?ng các s? ch?n t? 1 ??n %d: %d\n"", n, sum);
+    return 0;
+}"										
+10	Tính t?ng c?a dãy s?: 1 + 1/2 + 1/3 + ... + 1/n.	"#include <stdio.h>
+
+int main() {
+    int n;
+    float sum = 0;
+    scanf(""%d"", &n);
+    for (int i = 1; i <= n; i++) {
+        sum += 1.0 / i;
+    }
+    printf(""T?ng dãy s?: %.2f\n"", sum);
+    return 0;
+}"										
+11	Tính l?y th?a:a^b (không ???c s? d?ng hàm th? vi?n mà ph?i s? d?ng vòng l?p).	"#include <stdio.h>
+
+int main() {
+    int a, b;
+    long long result = 1;
+    scanf(""%d %d"", &a, &b);
+    for (int i = 0; i < b; i++) {
+        result *= a;
+    }
+    printf(""%d^%d = %lld\n"", a, b, result);
+    return 0;
+}"										
+12	Ki?m tra s? hoàn h?o (Perfect number).	"#include <stdio.h>
+
+int main() {
+    int n, sum = 0;
+    scanf(""%d"", &n);
+    for (int i = 1; i < n; i++) {
+        if (n % i == 0) {
+            sum += i;
+        }
+    }
+    printf(sum == n ? ""%d là s? hoàn h?o.\n"" : ""%d không là s? hoàn h?o.\n"", n);
+    return 0;
+}"										
+13	Tính t?ng các ch? s? ch?n c?a m?t s?.	"#include <stdio.h>
+
+int main() {
+    int n;
+    scanf(""%d"", &n);
+    int sum = 0;
+    int temp = n < 0 ? -n : n;
+    while (temp > 0) {
+        sum += temp % 10;
+        temp /= 10;
+    }
+    printf(""Tong cac chu so: %d\n"", sum);
+    return 0;
+}
+"										
+14	Tính t?ng các ch? s? l? c?a m?t s?.	"#include <stdio.h>
+
+int main() {
+    int n;
+    scanf(""%d"", &n);
+    int sum = 0;
+    int temp = n < 0 ? -n : n;
+    while (temp > 0) {
+        sum += temp % 10;
+        temp /= 10;
+    }
+    printf(""Tong cac chu so: %d\n"", sum);
+    return 0;
+}
+"										
+15	Tìm ??c chung l?n nh?t (GCD) và b?i chung nh? nh?t (LCM).	"#include <stdio.h>
+
+int main() {
+    int a, b, gcd, lcm;
+    scanf(""%d %d"", &a, &b);
+    int x = a, y = b;
+    while (y != 0) {
+        int temp = y;
+        y = x % y;
+        x = temp;
+    }
+    gcd = x;
+    lcm = (a * b) / gcd;
+    printf(""UCLN: %d\nBCNN: %d\n"", gcd, lcm);
+    return 0;
+}"										
+16	Tìm s? Fibonacci th? n.	"#include <stdio.h>
+
+int main() {
+    int n;
+    scanf(""%d"", &n);
+    long long a = 0, b = 1, c;
+    for (int i = 2; i <= n; i++) {
+        c = a + b;
+        a = b;
+        b = c;
+    }
+    printf(""S? Fibonacci th? %d: %lld\n"", n, b);
+    return 0;
+}"										
+17	Tính c?n b?c hai g?n ?úng c?a m?t s? (không dùng sqrt).	"#include <stdio.h>
+
+int main() {
+    float n, guess = 1;
+    scanf(""%f"", &n);
+    for (int i = 0; i < 10; i++) {
+        guess = (guess + n / guess) / 2;
+    }
+    printf(""C?n b?c hai c?a %.2f: %.2f\n"", n, guess);
+    return 0;
+}"										
+18	Chuy?n ??i s? nguyên sang h? nh? phân (c? s? 2 - binary).	"#include <stdio.h>
+
+int main() {
+    int n;
+    scanf(""%d"", &n);
+    printf(""S? nh? phân: "");
+    if (n == 0) {
+        printf(""0"");
+    } else {
+        int binary[32], i = 0;
+        while (n > 0) {
+            binary[i++] = n % 2;
+            n /= 2;
+        }
+        for (int j = i - 1; j >= 0; j--) {
+            printf(""%d"", binary[j]);
+        }
+    }
+    printf(""\n"");
+    return 0;
+}"										
+19	Chuy?n ??i s? nguyên sang h? bát phân (c? s? 8 - octal).	"#include <stdio.h>
+
+int main() {
+    int n;
+    scanf(""%d"", &n);
+    printf(""S? bát phân: "");
+    if (n == 0) {
+        printf(""0"");
+    } else {
+        int octal[32], i = 0;
+        while (n > 0) {
+            octal[i++] = n % 8;
+            n /= 8;
+        }
+        for (int j = i - 1; j >= 0; j--) {
+            printf(""%d"", octal[j]);
+        }
+    }
+    printf(""\n"");
+    return 0;
+}"										
+20	Chuy?n ??i s? nguyên sang h? th?p l?c phân (c? s? 16 - hexadecimal).	"#include <stdio.h>
+
+int main() {
+    int n;
+    scanf(""%d"", &n);
+    printf(""S? th?p l?c phân: "");
+    if (n == 0) {
+        printf(""0"");
+    } else {
+        char hex[32];
+        int i = 0;
+        while (n > 0) {
+            int rem = n % 16;
+            if (rem < 10) {
+                hex[i++] = rem + '0';
+            } else {
+                hex[i++] = rem - 10 + 'A';
+            }
+            n /= 16;
+        }
+        for (int j = i - 1; j >= 0; j--) {
+            printf(""%c"", hex[j]);
+        }
+    }
+    printf(""\n"");
+    return 0;
+}"										
+21	Chuy?n ??i s? nguyên sang h? M (M là s? s? nguyên d??ng).	"#include <stdio.h>
+
+int main() {
+    int n, m;
+    scanf(""%d %d"", &n, &m);
+    printf(""S? %d trong h? %d: "", n, m);
+    if (n == 0) {
+        printf(""0"");
+    } else {
+        char digits[32];
+        int i = 0;
+        while (n > 0) {
+            int rem = n % m;
+            if (rem < 10) {
+                digits[i++] = rem + '0';
+            } else {
+                digits[i++] = rem - 10 + 'A';
+            }
+            n /= m;
+        }
+        for (int j = i - 1; j >= 0; j--) {
+            printf(""%c"", digits[j]);
+        }
+    }
+    printf(""\n"");
+    return 0;
+}"										
+22	Tìm s? nguyên t? th? n.	"#include <stdio.h>
+
+int isPrime(int num) {
+    if (num <= 1) return 0;
+    for (int i = 2; i * i <= num; i++) {
+        if (num % i == 0) return 0;
+    }
+    return 1;
+}
+
+int main() {
+    int n, count = 0, num = 2;
+    scanf(""%d"", &n);
+    while (count < n) {
+        if (isPrime(num)) {
+            count++;
+        }
+        num++;
+    }
+    printf(""S? nguyên t? th? %d: %d\n"", n, num - 1);
+    return 0;
+}"										
+23	Phân tích m?t s? nguyên thành tích các th?a s? nguyên t?.	"#include <stdio.h>
+
+int main() {
+    int n;
+    scanf(""%d"", &n);
+    printf(""%d = "", n);
+    for (int i = 2; i <= n; i++) {
+        while (n % i == 0) {
+            printf(""%d"", i);
+            n /= i;
+            if (n > 1) printf("" * "");
+        }
+    }
+    printf(""\n"");
+    return 0;
+}"										
+24	Gi?i ph??ng trình b?c hai: ax² + bx + c = 0.	"#include <stdio.h>
+#include <math.h>
+
+int main() {
+    float a, b, c, delta;
+    scanf(""%f %f %f"", &a, &b, &c);
+    if (a == 0) {
+        printf(""Ph??ng trình b?c nh?t.\n"");
+    } else {
+        delta = b * b - 4 * a * c;
+        if (delta > 0) {
+            float x1 = (-b + sqrt(delta)) / (2 * a);
+            float x2 = (-b - sqrt(delta)) / (2 * a);
+            printf(""Nghi?m: x1 = %.2f, x2 = %.2f\n"", x1, x2);
+        } else if (delta == 0) {
+            float x = -b / (2 * a);
+            printf(""Nghi?m kép: x = %.2f\n"", x);
+        } else {
+            printf(""Ph??ng trình vô nghi?m.\n"");
+        }
+    }
+    return 0;
+}"										
+25	Gi?i ph??ng trình b?c nh?t: ax + b = 0.	"#include <stdio.h>
+
+int main() {
+    float a, b;
+    scanf(""%f %f"", &a, &b);
+    if (a == 0) {
+        printf(b == 0 ? ""Vô s? nghi?m.\n"" : ""Vô nghi?m.\n"");
+    } else {
+        printf(""Nghi?m: x = %.2f\n"", -b / a);
+    }
+    return 0;
+}"										
+26	"Nh?p hai s? nguyên, tính t?ng c?a chúng.  "	"#include <stdio.h>
+
+int main() {
+    int a, b;
+    scanf(""%d%d"", &a, &b);
+    printf(""Tong: %d\n"", a + b);
+    printf(""Hieu: %d\n"", a - b);
+    printf(""Tich: %d\n"", a * b);
+    if (b != 0)
+        printf(""Thuong: %.2f\n"", (float)a / b);
+    else
+        printf(""Khong the chia cho 0\n"");
+    return 0;
+}
+"										
+27	"Nh?p hai s? nguyên, tính hi?u c?a s? th? nh?t và th? hai. "	"#include <stdio.h>
+
+int main() {
+    int a, b;
+    scanf(""%d %d"", &a, &b);
+    printf(""Hi?u: %d\n"", a - b);
+    return 0;
+}"										
+28	"Nh?p hai s? nguyên, tính hi?u c?a s? th? hai và th? nh?t.  "	"#include <stdio.h>
+
+int main() {
+    int a, b;
+    scanf(""%d %d"", &a, &b);
+    printf(""Hi?u: %d\n"", b - a);
+    return 0;
+}"										
+29	"Nh?p hai s? nguyên, tính tích c?a chúng.  "	"#include <stdio.h>
+
+int main() {
+    int a, b;
+    scanf(""%d %d"", &a, &b);
+    printf(""Tích: %d\n"", a * b);
+    return 0;
+}"										
+30	"Nh?p hai s? nguyên, tính th??ng (k?t qu? chia th?c). "	"#include <stdio.h>
+
+int main() {
+    float a, b;
+    scanf(""%f %f"", &a, &b);
+    if (b != 0) {
+        printf(""Th??ng: %.2f\n"", a / b);
+    } else {
+        printf(""Không th? chia cho 0.\n"");
+    }
+    return 0;
+}"										
+31	"Nh?p hai s? nguyên, tính th??ng (k?t qu? chia nguyên). "	"#include <stdio.h>
+
+int main() {
+    int a, b;
+    scanf(""%d %d"", &a, &b);
+    if (b != 0) {
+        printf(""Th??ng nguyên: %d\n"", a / b);
+    } else {
+        printf(""Không th? chia cho 0.\n"");
+    }
+    return 0;
+}"										
+32	"Nh?p hai s? th?c, tính th??ng (k?t qu? chia th?c).  "	"#include <stdio.h>
+
+int main() {
+    float a, b;
+    scanf(""%f %f"", &a, &b);
+    if (b != 0) {
+        printf(""Th??ng: %.2f\n"", a / b);
+    } else {
+        printf(""Không th? chia cho 0.\n"");
+    }
+    return 0;
+}"										
+33	"Nh?p hai s? nguyên, tính ph?n d? c?a phép chia.  "	"#include <stdio.h>
+
+int main() {
+    int a, b;
+    scanf(""%d %d"", &a, &b);
+    if (b != 0) {
+        printf(""Ph?n d?: %d\n"", a % b);
+    } else {
+        printf(""Không th? chia cho 0.\n"");
+    }
+    return 0;
+}"										
+34	"Tính t?ng, hi?u, tích, th??ng c?a hai s? b?t k? (g?p 4 phép vào m?t bài).  "	"#include <stdio.h>
+
+int main() {
+    float a, b;
+    scanf(""%f %f"", &a, &b);
+    printf(""T?ng: %.2f\n"", a + b);
+    printf(""Hi?u: %.2f\n"", a - b);
+    printf(""Tích: %.2f\n"", a * b);
+    if (b != 0) {
+        printf(""Th??ng: %.2f\n"", a / b);
+    } else {
+        printf(""Không th? chia cho 0.\n"");
+    }
+    return 0;
+}"										
+35	Tính di?n tích hình ch? nh?t (dùng phép nhân).  	"#include <stdio.h>
+
+int main() {
+    float dai, rong;
+    scanf(""%f %f"", &dai, &rong);
+    printf(""Di?n tích: %.2f\n"", dai * rong);
+    return 0;
+}"										
+36	Tính di?n tích hình tròn v?i bán kính r (dùng h?ng s? PI và phép nhân bình ph??ng).  	"#include <stdio.h>
+#define PI 3.14159
+
+int main() {
+    float r;
+    scanf(""%f"", &r);
+    printf(""Di?n tích: %.2f\n"", PI * r * r);
+    return 0;
+}"										
+37	"Nh?p 3 s?, tính t?ng và trung bình c?ng.  "	"#include <stdio.h>
+
+int main() {
+    float a, b, c;
+    scanf(""%f %f %f"", &a, &b, &c);
+    printf(""T?ng: %.2f\n"", a + b + c);
+    printf(""Trung bình c?ng: %.2f\n"", (a + b + c) / 3);
+    return 0;
+}"										
+38	Tính l?y th?a a^b (cho phép l?a ch?n: ch?n 1 s? dùng vòng l?p; ch?n 2 s? dùng hàm pow).  	"#include <stdio.h>
+#include <math.h>
+
+int main() {
+    int a, b, choice;
+    printf(""Ch?n ph??ng pháp (1: Vòng l?p, 2: Hàm pow): "");
+    scanf(""%d"", &choice);
+    scanf(""%d %d"", &a, &b);
+    if (choice == 1) {
+        long long result = 1;
+        for (int i = 0; i < b; i++) {
+            result *= a;
+        }
+        printf(""%d^%d = %lld\n"", a, b, result);
+    } else if (choice == 2) {
+        printf(""%d^%d = %.2f\n"", a, b, pow(a, b));
+    } else {
+        printf(""L?a ch?n không h?p l?.\n"");
+    }
+    return 0;
+}"										
+39	Tính t?ng các s? t? 1 ??n n (dùng công th?c s? h?c).  	"#include <stdio.h>
+
+int main() {
+    int n;
+    scanf(""%d"", &n);
+    printf(""T?ng: %d\n"", n * (n + 1) / 2);
+    return 0;
+}"										
+40	Tính hi?u c?a t?ng các s? ch?n và t?ng các s? l? t? 1 ??n n.  	"#include <stdio.h>
+
+int main() {
+    int n, sumEven = 0, sumOdd = 0;
+    scanf(""%d"", &n);
+    for (int i = 1; i <= n; i++) {
+        if (i % 2 == 0) {
+            sumEven += i;
+        } else {
+            sumOdd += i;
+        }
+    }
+    printf(""Hi?u: %d\n"", sumEven - sumOdd);
+    return 0;
+}"										
+41	Vi?t ch??ng trình th?c hi?n phép chia có ki?m tra chia cho 0.  	"#include <stdio.h>
+
+int main() {
+    float a, b;
+    scanf(""%f %f"", &a, &b);
+    if (b != 0) {
+        printf(""Th??ng: %.2f\n"", a / b);
+    } else {
+        printf(""Không th? chia cho 0.\n"");
+    }
+    return 0;
+}"										
+42	"Nh?p ba s?, tìm t?ng c?a hai s? l?n nh?t.  "	"#include <stdio.h>
+
+int main() {
+    float a, b, c;
+    scanf(""%f %f %f"", &a, &b, &c);
+    float max1 = a, max2 = b;
+    if (b > max1) {
+        max1 = b;
+        max2 = a;
+    }
+    if (c > max1) {
+        max2 = max1;
+        max1 = c;
+    } else if (c > max2) {
+        max2 = c;
+    }
+    printf(""T?ng hai s? l?n nh?t: %.2f\n"", max1 + max2);
+    return 0;
+}"										
+43	"Tính giá tr? bi?u th?c: ch?n 1, tính (a + b)^2 ch?n 2 tính (a - b)^2.  "	"#include <stdio.h>
+
+int main() {
+    int a, b, choice;
+    printf(""Ch?n ph??ng pháp (1: (a+b)^2, 2: (a-b)^2): "");
+    scanf(""%d"", &choice);
+    scanf(""%d %d"", &a, &b);
+    if (choice == 1) {
+        printf(""(a+b)^2 = %d\n"", (a + b) * (a + b));
+    } else if (choice == 2) {
+        printf(""(a-b)^2 = %d\n"", (a - b) * (a - b));
+    } else {
+        printf(""L?a ch?n không h?p l?.\n"");
+    }
+    return 0;
+}"										
+44	Tính giá tr? bi?u th?c: a^2 + b^2 + 2ab.  	"#include <stdio.h>
+
+int main() {
+    int a, b;
+    scanf(""%d %d"", &a, &b);
+    printf(""a^2 + b^2 + 2ab = %d\n"", a * a + b * b + 2 * a * b);
+    return 0;
+}"										
+45	"Nh?p vào hai s? nguyên, hoán ??i giá tr? c?a chúng không dùng bi?n t?m (dùng phép toán).  "	"#include <stdio.h>
+
+int main() {
+    int a, b;
+    scanf(""%d %d"", &a, &b);
+    a = a + b;
+    b = a - b;
+    a = a - b;
+    printf(""Sau hoán ??i: a = %d, b = %d\n"", a, b);
+    return 0;
+}"										
+46	Tính giá tr? tuy?t ??i c?a m?t s? (dùng ?i?u ki?n và toán t?).  	"#include <stdio.h>
+
+int main() {
+    int n;
+    scanf(""%d"", &n);
+    printf(""Giá tr? tuy?t ??i: %d\n"", n < 0 ? -n : n);
+    return 0;
+}"										
+47	"Nh?p gi?, phút, giây ? tính t?ng s? giây.  "	"#include <stdio.h>
+
+int main() {
+    int h, m, s;
+    scanf(""%d %d %d"", &h, &m, &s);
+    printf(""T?ng s? giây: %d\n"", h * 3600 + m * 60 + s);
+    return 0;
+}"										
+48	"Nh?p t?ng s? giây ? tính ra gi?, phút, giây (dùng chia nguyên và chia d?)."	"#include <stdio.h>
+
+int main() {
+    int totalSeconds;
+    scanf(""%d"", &totalSeconds);
+    int h = totalSeconds / 3600;
+    int m = (totalSeconds % 3600) / 60;
+    int s = totalSeconds % 60;
+    printf(""%02d:%02d:%02d\n"", h, m, s);
+    return 0;
+}"										
+49	"Nh?p m?t s? nguyên, ki?m tra s? ?ó là s? d??ng, âm hay b?ng 0."	"#include <stdio.h>
+
+int main() {
+    int n;
+    scanf(""%d"", &n);
+    if (n > 0) {
+        printf(""S? d??ng.\n"");
+    } else if (n < 0) {
+        printf(""S? âm.\n"");
+    } else {
+        printf(""S? b?ng 0.\n"");
+    }
+    return 0;
+}"										
+50	"Nh?p m?t s?, ki?m tra s? ?ó là ch?n hay l?."	"#include <stdio.h>
+
+int main() {
+    int n;
+    scanf(""%d"", &n);
+    printf(n % 2 == 0 ? ""S? ch?n.\n"" : ""S? l?.\n"");
+    return 0;
+}"										
+51	"Nh?p 3 s? nguyên, tìm s? l?n nh?t."	"#include <stdio.h>
+
+int main() {
+    int a, b, c;
+    scanf(""%d %d %d"", &a, &b, &c);
+    int max = a;
+    if (b > max) max = b;
+    if (c > max) max = c;
+    printf(""S? l?n nh?t: %d\n"", max);
+    return 0;
+}"										
+52	"Nh?p 3 s?, ki?m tra chúng có ph?i là các c?nh c?a m?t tam giác không."	"#include <stdio.h>
+
+int main() {
+    float a, b, c;
+    scanf(""%f %f %f"", &a, &b, &c);
+    if (a + b > c && a + c > b && b + c > a) {
+        printf(""Là c?nh c?a tam giác.\n"");
+    } else {
+        printf(""Không ph?i là c?nh c?a tam giác.\n"");
+    }
+    return 0;
+}"										
+53	"Nh?p m?t ký t?, ki?m tra ký t? ?ó là nguyên âm hay ph? âm (s? d?ng b?ng ch? cái ti?ng Anh)."	"#include <stdio.h>
+
+int main() {
+    char c;
+    scanf("" %c"", &c);
+    if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u' ||
+        c == 'A' || c == 'E' || c == 'I' || c == 'O' || c == 'U') {
+        printf(""Nguyên âm.\n"");
+    } else {
+        printf(""Ph? âm.\n"");
+    }
+    return 0;
+}"										
+54	Ki?m tra n?m nh?p vào có ph?i n?m nhu?n không.	"#include <stdio.h>
+
+int main() {
+    int year;
+    scanf(""%d"", &year);
+    if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {
+        printf(""N?m nhu?n.\n"");
+    } else {
+        printf(""Không ph?i n?m nhu?n.\n"");
+    }
+    return 0;
+}"										
+55	"Nh?p ?i?m ki?m tra, in ra x?p lo?i (Gi?i, Khá, Trung bình, Y?u...: d?a trên ?ánh giá h? ?i?m Trung h?c Ph? thông hi?n hành)."	"#include <stdio.h>
+
+int main() {
+    float score;
+    scanf(""%f"", &score);
+    if (score >= 8.5) {
+        printf(""Gi?i\n"");
+    } else if (score >= 6.5) {
+        printf(""Khá\n"");
+    } else if (score >= 5.0) {
+        printf(""Trung bình\n"");
+    } else {
+        printf(""Y?u\n"");
+    }
+    return 0;
+}"										
+56	Gi?i ph??ng trình b?c nh?t ax+b=0.	"#include <stdio.h>
+
+int main() {
+    float a, b;
+    scanf(""%f %f"", &a, &b);
+    if (a == 0) {
+        printf(b == 0 ? ""Vô s? nghi?m.\n"" : ""Vô nghi?m.\n"");
+    } else {
+        printf(""Nghi?m: x = %.2f\n"", -b / a);
+    }
+    return 0;
+}"										
+57	Tính ti?n ?i?n theo b?c thang (if-else l?ng nhau; s? d?ng b?c thang c?a EVN hi?n hành).	"#include <stdio.h>
+
+int main() {
+    int kWh;
+    float cost = 0;
+    scanf(""%d"", &kWh);
+    if (kWh <= 50) {
+        cost = kWh * 1678;
+    } else if (kWh <= 100) {
+        cost = 50 * 1678 + (kWh - 50) * 1734;
+    } else if (kWh <= 200) {
+        cost = 50 * 1678 + 50 * 1734 + (kWh - 100) * 2014;
+    } else if (kWh <= 300) {
+        cost = 50 * 1678 + 50 * 1734 + 100 * 2014 + (kWh - 200) * 2536;
+    } else if (kWh <= 400) {
+        cost = 50 * 1678 + 50 * 1734 + 100 * 2014 + 100 * 2536 + (kWh - 300) * 2834;
+    } else {
+        cost = 50 * 1678 + 50 * 1734 + 100 * 2014 + 100 * 2536 + 100 * 2834 + (kWh - 400) * 2927;
+    }
+    printf(""Ti?n ?i?n: %.2f VND\n"", cost);
+    return 0;
+}"										
+58	Tính ti?n taxi theo kho?ng cách (if-else l?ng nhau; s? d?ng chính sách giá c?a SM Xanh Taxi).	"#include <stdio.h>
+
+int main() {
+    float km, cost = 0;
+    scanf(""%f"", &km);
+    if (km <= 1) {
+        cost = 15000;
+    } else if (km <= 5) {
+        cost = 15000 + (km - 1) * 13500;
+    } else if (km <= 120) {
+        cost = 15000 + 4 * 13500 + (km - 5) * 11000;
+    } else {
+        cost = (15000 + 4 * 13500 + (km - 5) * 11000) * 0.9;
+    }
+    printf(""Ti?n taxi: %.2f VND\n"", cost);
+    return 0;
+}"										
+59	Ki?m tra m?t s? có chia h?t cho 3 và 5 hay không.	"#include <stdio.h>
+
+int main() {
+    int n;
+    scanf(""%d"", &n);
+    printf(n % 3 == 0 && n % 5 == 0 ? ""Chia h?t cho c? 3 và 5.\n"" : ""Không chia h?t cho c? 3 và 5.\n"");
+    return 0;
+}"										
+60	"Nh?p 3 s? nguyên, ki?m tra có t?o thành tam giác vuông không."	"#include <stdio.h>
+
+int main() {
+    float a, b, c;
+    scanf(""%f %f %f"", &a, &b, &c);
+    if (a + b > c && a + c > b && b + c > a) {
+        if (a * a + b * b == c * c || a * a + c * c == b * b || b * b + c * c == a * a) {
+            printf(""Là tam giác vuông.\n"");
+        } else {
+            printf(""Không ph?i tam giác vuông.\n"");
+        }
+    } else {
+        printf(""Không ph?i tam giác.\n"");
+    }
+    return 0;
+}"										
+61	"Nh?p tu?i, ki?m tra có ?? ?i?u ki?n thi b?ng lái xe không (? 18 tu?i)."	"#include <stdio.h>
+
+int main() {
+    int age;
+    scanf(""%d"", &age);
+    printf(age >= 18 ? ""?? ?i?u ki?n thi b?ng lái xe.\n"" : ""Không ?? ?i?u ki?n thi b?ng lái xe.\n"");
+    return 0;
+}"										
+62	"Nh?p vào s? t? 1 ??n 7, in ra th? trong tu?n t??ng ?ng (Quy ??c: 1 ? Ch? nh?t, 2 ? Th? hai...)."	"#include <stdio.h>
+
+int main() {
+    int day;
+    scanf(""%d"", &day);
+    switch (day) {
+        case 1: printf(""Ch? nh?t\n""); break;
+        case 2: printf(""Th? hai\n""); break;
+        case 3: printf(""Th? ba\n""); break;
+        case 4: printf(""Th? t?\n""); break;
+        case 5: printf(""Th? n?m\n""); break;
+        case 6: printf(""Th? sáu\n""); break;
+        case 7: printf(""Th? b?y\n""); break;
+        default: printf(""Không h?p l?.\n"");
+    }
+    return 0;
+}"										
+63	"Nh?p vào tháng, in ra s? ngày trong tháng (có xét n?m nhu?n n?u là tháng 2)."	"#include <stdio.h>
+
+int main() {
+    int month, year;
+    scanf(""%d %d"", &month, &year);
+    switch (month) {
+        case 1: case 3: case 5: case 7: case 8: case 10: case 12:
+            printf(""31 ngày\n""); break;
+        case 4: case 6: case 9: case 11:
+            printf(""30 ngày\n""); break;
+        case 2:
+            if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {
+                printf(""29 ngày\n"");
+            } else {
+                printf(""28 ngày\n"");
+            }
+            break;
+        default: printf(""Tháng không h?p l?.\n"");
+    }
+    return 0;
+}"										
+64	"Menu l?a ch?n phép tính: c?ng, tr?, nhân, chia 2 s?."	"#include <stdio.h>
+
+int main() {
+    int choice;
+    float a, b;
+    printf(""Ch?n phép tính (1: C?ng, 2: Tr?, 3: Nhân, 4: Chia): "");
+    scanf(""%d"", &choice);
+    scanf(""%f %f"", &a, &b);
+    switch (choice) {
+        case 1: printf(""K?t qu?: %.2f\n"", a + b); break;
+        case 2: printf(""K?t qu?: %.2f\n"", a - b); break;
+        case 3: printf(""K?t qu?: %.2f\n"", a * b); break;
+        case 4:
+            if (b != 0) {
+                printf(""K?t qu?: %.2f\n"", a / b);
+            } else {
+                printf(""Không th? chia cho 0.\n"");
+            }
+            break;
+        default: printf(""L?a ch?n không h?p l?.\n"");
+    }
+    return 0;
+}"										
+65	"Nh?p m?t ch? cái hoa, in ra ch? th??ng t??ng ?ng (A ? a, B ? b...)."	"#include <stdio.h>
+
+int main() {
+    char c;
+    scanf("" %c"", &c);
+    if (c >= 'A' && c <= 'Z') {
+        printf(""%c\n"", c + 32);
+    } else {
+        printf(""Không ph?i ch? cái hoa.\n"");
+    }
+    return 0;
+}"										
+66	"Chuy?n ??i ??n v?: l?a ch?n gi?a km ? m, m ? cm, kg ? g..."	"#include <stdio.h>
+
+int main() {
+    int choice;
+    float value;
+    printf(""Ch?n ??n v? (1: km ? m, 2: m ? cm, 3: kg ? g): "");
+    scanf(""%d"", &choice);
+    scanf(""%f"", &value);
+    switch (choice) {
+        case 1: printf(""%.2f km = %.2f m\n"", value, value * 1000); break;
+        case 2: printf(""%.2f m = %.2f cm\n"", value, value * 100); break;
+        case 3: printf(""%.2f kg = %.2f g\n"", value, value * 1000); break;
+        default: printf(""L?a ch?n không h?p l?.\n"");
+    }
+    return 0;
+}"										
+67	"Nh?p ?i?m (0–10), dùng switch in ra nh?n xét: 10 ? Xu?t s?c, 9–8 ? Gi?i, v.v."	"#include <stdio.h>
+
+int main() {
+    int score;
+    scanf(""%d"", &score);
+    switch (score) {
+        case 10: printf(""Xu?t s?c\n""); break;
+        case 9: case 8: printf(""Gi?i\n""); break;
+        case 7: printf(""Khá\n""); break;
+        case 6: case 5: printf(""Trung bình\n""); break;
+        case 4: case 3: case 2: case 1: case 0: printf(""Y?u\n""); break;
+        default: printf(""?i?m không h?p l?.\n"");
+    }
+    return 0;
+}"										
+68	Ch?n lo?i s?n ph?m và in ra giá bán theo mã l?a ch?n (t? ch?n m?t danh sách các s?n ph?m).	"#include <stdio.h>
+
+int main() {
+    int code;
+    printf(""Nh?p mã s?n ph?m (1-3): "");
+    scanf(""%d"", &code);
+    switch (code) {
+        case 1: printf(""Giá: 10000 VND\n""); break;
+        case 2: printf(""Giá: 20000 VND\n""); break;
+        case 3: printf(""Giá: 30000 VND\n""); break;
+        default: printf(""Mã không h?p l?.\n"");
+    }
+    return 0;
+}"										
+69	"Tính toán ti?n l??ng theo c?p b?c ch?n t? menu (A, B, C...: t? ch?n c?p b?c và m?c l??ng)."	"#include <stdio.h>
+
+int main() {
+    char grade;
+    printf(""Nh?p c?p b?c (A, B, C): "");
+    scanf("" %c"", &grade);
+    switch (grade) {
+        case 'A': printf(""L??ng: 10000000 VND\n""); break;
+        case 'B': printf(""L??ng: 8000000 VND\n""); break;
+        case 'C': printf(""L??ng: 5000000 VND\n""); break;
+        default: printf(""C?p b?c không h?p l?.\n"");
+    }
+    return 0;
+}"										
+70	In ra dãy s? t? 1 ??n n (n nh?p t? bàn phím).	"#include <stdio.h>
+
+int main() {
+    int n;
+    scanf(""%d"", &n);
+    for (int i = 1; i <= n; i++) {
+        printf(""%d "", i);
+    }
+    printf(""\n"");
+    return 0;
+}"										
+71	In ra các s? ch?n t? 1 ??n n.	"#include <stdio.h>
+
+int main() {
+    int n;
+    scanf(""%d"", &n);
+    for (int i = 1; i <= n; i++) {
+        printf(""%d "", i);
+    }
+    printf(""\n"");
+    return 0;
+}"										
+72	In ra các s? l? t? n ??n 1 (ng??c l?i).	"#include <stdio.h>
+
+int main() {
+    int n;
+    scanf(""%d"", &n);
+    for (int i = n; i >= 1; i--) {
+        if (i % 2 != 0) {
+            printf(""%d "", i);
+        }
+    }
+    printf(""\n"");
+    return 0;
+}"										
+73	Tính t?ng các s? t? 1 ??n n.	"#include <stdio.h>
+
+int main() {
+    int n, sum = 0;
+    scanf(""%d"", &n);
+    for (int i = 1; i <= n; i++) {
+        sum += i;
+    }
+    printf(""T?ng: %d\n"", sum);
+    return 0;
+}"										
+74	Tính t?ng các s? ch?n t? 1 ??n n.	"#include <stdio.h>
+
+int main() {
+    int n, sum = 0;
+    scanf(""%d"", &n);
+    for (int i = 2; i <= n; i += 2) {
+        sum += i;
+    }
+    printf(""T?ng: %d\n"", sum);
+    return 0;
+}"										
+75	Tính tích các s? t? 1 ??n n (s? d?ng vòng l?p).	"#include <stdio.h>
+
+int main() {
+    int n;
+    long long product = 1;
+    scanf(""%d"", &n);
+    for (int i = 1; i <= n; i++) {
+        product *= i;
+    }
+    printf(""Tích: %lld\n"", product);
+    return 0;
+}"										
+76	Tính t?ng các s? chia h?t cho 3 và 5 trong các s? t? 1 ??n n.	"#include <stdio.h>
+
+int main() {
+    int n, sum = 0;
+    scanf(""%d"", &n);
+    for (int i = 1; i <= n; i++) {
+        if (i % 3 == 0 && i % 5 == 0) {
+            sum += i;
+        }
+    }
+    printf(""T?ng: %d\n"", sum);
+    return 0;
+}"										
+77	In b?ng c?u ch??ng c?a m?t s? n.	"#include <stdio.h>
+
+int main() {
+    int n;
+    scanf(""%d"", &n);
+    for (int i = 1; i <= 10; i++) {
+        printf(""%d x %d = %d\n"", n, i, n * i);
+    }
+    return 0;
+}"										
+78	In b?ng các c?u ch??ng t? b?ng c?u ch??ng 2 ??n b?ng c?u ch??ng 9.	"#include <stdio.h>
+
+int main() {
+    for (int i = 2; i <= 9; i++) {
+        for (int j = 1; j <= 10; j++) {
+            printf(""%d x %d = %d\n"", i, j, i * j);
+        }
+        printf(""\n"");
+    }
+    return 0;
+}"										
+79	??m có bao nhiêu s? chia h?t cho 7 trong kho?ng 1 ??n n.	"#include <stdio.h>
+
+int main() {
+    for (int i = 2; i <= 9; i++) {
+        for (int j = 1; j <= 10; j++) {
+            printf(""%d x %d = %d\n"", i, j, i * j);
+        }
+        printf(""\n"");
+    }
+    return 0;
+}"										
+80	Ki?m tra m?t s? có ph?i là s? nguyên t?.	"#include <stdio.h>
+
+int main() {
+    int n, count = 0;
+    scanf(""%d"", &n);
+    for (int i = 1; i <= n; i++) {
+        if (i % 7 == 0) {
+            count++;
+        }
+    }
+    printf(""S? l??ng: %d\n"", count);
+    return 0;
+}"										
+81	In ra các s? nguyên t? t? 1 ??n n.	"#include <stdio.h>
+
+int main() {
+    int n, isPrime = 1;
+    scanf(""%d"", &n);
+    if (n <= 1) {
+        isPrime = 0;
+    } else {
+        for (int i = 2; i * i <= n; i++) {
+            if (n % i == 0) {
+                isPrime = 0;
+                break;
+            }
+        }
+    }
+    printf(isPrime ? ""%d là s? nguyên t?.\n"" : ""%d không là s? nguyên t?.\n"", n);
+    return 0;
+}"										
+82	Tính t?ng các ch? s? c?a m?t s? nguyên.	"#include <stdio.h>
+
+int main() {
+    int n;
+    scanf(""%d"", &n);
+    int sum = 0;
+    int temp = n < 0 ? -n : n;
+    while (temp > 0) {
+        sum += temp % 10;
+        temp /= 10;
+    }
+    printf(""Tong cac chu so: %d\n"", sum);
+    return 0;
+}
+"										
+83	Tính t?ng các ch? s? là s? nguyên t? c?a m?t s? nguyên.	"#include <stdio.h>
+
+int main() {
+    int n;
+    scanf(""%d"", &n);
+    int sum = 0;
+    int temp = n < 0 ? -n : n;
+    while (temp > 0) {
+        sum += temp % 10;
+        temp /= 10;
+    }
+    printf(""Tong cac chu so: %d\n"", sum);
+    return 0;
+}
+"										
+84	??o ng??c m?t s? nguyên (ví d? 123 ? 321).	"#include <stdio.h>
+
+int main() {
+    int n, reversed = 0;
+    scanf(""%d"", &n);
+    while (n != 0) {
+        reversed = reversed * 10 + n % 10;
+        n /= 10;
+    }
+    printf(""S? ??o ng??c: %d\n"", reversed);
+    return 0;
+}"										
+85	Tính t?ng c?a dãy: S=1+1/2+1/3+...+1/N	"#include <stdio.h>
+
+int main() {
+    int n;
+    float sum = 0;
+    scanf(""%d"", &n);
+    for (int i = 1; i <= n; i++) {
+        sum += 1.0 / i;
+    }
+    printf(""T?ng: %.2f\n"", sum);
+    return 0;
+}"										
+86	"In ra tam giác sao (ch?n 1: in tam giác vuông v?i góc vuông phía trên bên trái, ch?n 2: in tam giác vuông góc vuông phía trên bên ph?i; ch?n 3: tam giác vuông góc vuông phía d??i bên trái; ch?n 4: tam giác vuông v?i góc vuông phía d??i bên ph?i; ch?n 5: tam giác cân v?i ?áy ? trên; 6: tam giác cân v?i dáy ? d??i)."	"#include <stdio.h>
+
+int main() {
+    int n, choice;
+    printf(""Nh?p s? hàng và l?a ch?n (1-6): "");
+    scanf(""%d %d"", &n, &choice);
+    switch (choice) {
+        case 1:
+            for (int i = 1; i <= n; i++) {
+                for (int j = 1; j <= i; j++) {
+                    printf(""* "");
+                }
+                printf(""\n"");
+            }
+            break;
+        case 2:
+            for (int i = 1; i <= n; i++) {
+                for (int j = 1; j <= n - i; j++) {
+                    printf(""  "");
+                }
+                for (int j = 1; j <= i; j++) {
+                    printf(""* "");
+                }
+                printf(""\n"");
+            }
+            break;
+        case 3:
+            for (int i = n; i >= 1; i--) {
+                for (int j = 1; j <= i; j++) {
+                    printf(""* "");
+                }
+                printf(""\n"");
+            }
+            break;
+        case 4:
+            for (int i = n; i >= 1; i--) {
+                for (int j = 1; j <= n - i; j++) {
+                    printf(""  "");
+                }
+                for (int j = 1; j <= i; j++) {
+                    printf(""* "");
+                }
+                printf(""\n"");
+            }
+            break;
+        case 5:
+            for (int i = 1; i <= n; i++) {
+                for (int j = 1; j <= n - i; j++) {
+                    printf("" "");
+                }
+                for (int j = 1; j <= 2 * i - 1; j++) {
+                    printf(""*"");
+                }
+                printf(""\n"");
+            }
+            break;
+        case 6:
+            for (int i = n; i >= 1; i--) {
+                for (int j = 1; j <= n - i; j++) {
+                    printf("" "");
+                }
+                for (int j = 1; j <= 2 * i - 1; j++) {
+                    printf(""*"");
+                }
+                printf(""\n"");
+            }
+            break;
+        default:
+            printf(""L?a ch?n không h?p l?.\n"");
+    }
+    return 0;
+}"										
+87	In ra dãy Fibonacci v?i n ph?n t? ??u tiên.	"#include <stdio.h>
+
+int main() {
+    int n;
+    scanf(""%d"", &n);
+    long long a = 0, b = 1, c;
+    printf(""Dãy Fibonacci: "");
+    for (int i = 1; i <= n; i++) {
+        printf(""%lld "", b);
+        c = a + b;
+        a = b;
+        b = c;
+    }
+    printf(""\n"");
+    return 0;
+}"										
+88	Ki?m tra m?t s? có ph?i là s? hoàn h?o không (Perfect number).	"#include <stdio.h>
+
+int main() {
+    int n, sum = 0;
+    scanf(""%d"", &n);
+    for (int i = 1; i < n; i++) {
+        if (n % i == 0) {
+            sum += i;
+        }
+    }
+    printf(sum == n ? ""%d là s? hoàn h?o.\n"" : ""%d không là s? hoàn h?o.\n"", n);
+    return 0;
+}"										
+89	In ra b?ng s? nh? phân t? 1 ??n n.	"#include <stdio.h>
+
+void printBinary(int num) {
+    if (num == 0) {
+        printf(""0"");
+        return;
+    }
+    int binary[32], i = 0;
+    while (num > 0) {
+        binary[i++] = num % 2;
+        num /= 2;
+    }
+    for (int j = i - 1; j >= 0; j--) {
+        printf(""%d"", binary[j]);
+    }
+}
+
+int main() {
+    int n;
+    scanf(""%d"", &n);
+    for (int i = 1; i <= n; i++) {
+        printf(""%d: "", i);
+        printBinary(i);
+        printf(""\n"");
+    }
+    return 0;
+}"										
+90	"In ra b?ng s? nh? phân t? 1 ??n n. M?i s? nh? phân s? g?m m ch? s? (m bít), n?u m< s? bít c?n thi?t thì in ra s? bít c?n thi?t, ng??c l?i, thêm 0 vào bên trái cho ?? m bít."	"#include <stdio.h>
+
+void printBinary(int num, int m) {
+    int binary[32], i = 0;
+    if (num == 0) {
+        for (int j = 0; j < m; j++) {
+            printf(""0"");
+        }
+        return;
+    }
+    while (num > 0) {
+        binary[i++] = num % 2;
+        num /= 2;
+    }
+    int bits = i;
+    for (int j = 0; j < m - bits; j++) {
+        printf(""0"");
+    }
+    for (int j = i - 1; j >= 0; j--) {
+        printf(""%d"", binary[j]);
+    }
+}
+
+int main() {
+    int n, m;
+    scanf(""%d %d"", &n, &m);
+    for (int i = 1; i <= n; i++) {
+        printf(""%d: "", i);
+        printBinary(i, m);
+        printf(""\n"");
+    }
+    return 0;
+}"										
+91	Vi?t hàm tính t?ng hai s? nguyên.	"#include <stdio.h>
+
+int main() {
+    int a, b;
+    scanf(""%d%d"", &a, &b);
+    printf(""Tong: %d\n"", a + b);
+    printf(""Hieu: %d\n"", a - b);
+    printf(""Tich: %d\n"", a * b);
+    if (b != 0)
+        printf(""Thuong: %.2f\n"", (float)a / b);
+    else
+        printf(""Khong the chia cho 0\n"");
+    return 0;
+}
+"										
+92	Vi?t hàm ki?m tra m?t s? có ph?i là s? ch?n.	"#include <stdio.h>
+
+int isEven(int num) {
+    return num % 2 == 0;
+}
+
+int main() {
+    int n;
+    scanf(""%d"", &n);
+    printf(isEven(n) ? ""%d là s? ch?n.\n"" : ""%d không là s? ch?n.\n"", n);
+    return 0;
+}"										
+93	Vi?t hàm ki?m tra m?t s? có ph?i là s? nguyên t?.	"#include <stdio.h>
+
+int isPrime(int num) {
+    if (num <= 1) return 0;
+    for (int i = 2; i * i <= num; i++) {
+        if (num % i == 0) return 0;
+    }
+    return 1;
+}
+
+int main() {
+    int n;
+    scanf(""%d"", &n);
+    printf(isPrime(n) ? ""%d là s? nguyên t?.\n"" : ""%d không là s? nguyên t?.\n"", n);
+    return 0;
+}"										
+94	Vi?t hàm tính giai th?a c?a m?t s? nguyên d??ng.	"#include <stdio.h>
+
+int main() {
+    int n;
+    scanf(""%d"", &n);
+    if (n < 0) {
+        printf(""Khong tinh duoc giai thua\n"");
+        return 0;
+    }
+    long long gt = 1;
+    for (int i = 2; i <= n; ++i)
+        gt *= i;
+    printf(""Giai thua: %lld\n"", gt);
+    return 0;
+}
+"										
+95	Vi?t hàm tính t?ng các ch? s? c?a m?t s?.	"#include <stdio.h>
+
+int main() {
+    int n;
+    scanf(""%d"", &n);
+    int sum = 0;
+    int temp = n < 0 ? -n : n;
+    while (temp > 0) {
+        sum += temp % 10;
+        temp /= 10;
+    }
+    printf(""Tong cac chu so: %d\n"", sum);
+    return 0;
+}
+"										
+96	Vi?t hàm tính l?y th?a: a^b	"#include <stdio.h>
+
+long long power(int a, int b) {
+    long long result = 1;
+    for (int i = 0; i < b; i++) {
+        result *= a;
+    }
+    return result;
+}
+
+int main() {
+    int a, b;
+    scanf(""%d %d"", &a, &b);
+    printf(""%d^%d = %lld\n"", a, b, power(a, b));
+    return 0;
+}"										
+97	Vi?t hàm tìm s? l?n nh?t trong 3 s? nguyên.	"#include <stdio.h>
+
+int maxOfThree(int a, int b, int c) {
+    int max = a;
+    if (b > max) max = b;
+    if (c > max) max = c;
+    return max;
+}
+
+int main() {
+    int a, b, c;
+    scanf(""%d %d %d"", &a, &b, &c);
+    printf(""S? l?n nh?t: %d\n"", maxOfThree(a, b, c));
+    return 0;
+}"										
+98	Vi?t hàm ki?m tra m?t n?m có ph?i là n?m nhu?n.	"#include <stdio.h>
+
+int isLeapYear(int year) {
+    return (year % 4 == 0 && year % 100 != 0) || year % 400 == 0;
+}
+
+int main() {
+    int year;
+    scanf(""%d"", &year);
+    printf(isLeapYear(year) ? ""%d là n?m nhu?n.\n"" : ""%d không là n?m nhu?n.\n"", year);
+    return 0;
+}"										
+99	Vi?t hàm hoán ??i giá tr? c?a hai bi?n (dùng con tr?).	"#include <stdio.h>
+
+void swap(int *a, int *b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+int main() {
+    int a, b;
+    scanf(""%d %d"", &a, &b);
+    swap(&a, &b);
+    printf(""Sau hoán ??i: a = %d, b = %d\n"", a, b);
+    return 0;
+}"										
+100	Vi?t hàm in b?ng c?u ch??ng c?a m?t s?.	"#include <stdio.h>
+
+void printMultiplicationTable(int n) {
+    for (int i = 1; i <= 10; i++) {
+        printf(""%d x %d = %d\n"", n, i, n * i);
+    }
+}
+
+int main() {
+    int n;
+    scanf(""%d"", &n);
+    printMultiplicationTable(n);
+    return 0;
+}"										
+101	Vi?t hàm tính t?ng các s? nguyên t? t? 1 ??n n.	"#include <stdio.h>
+
+int isPrime(int num) {
+    if (num <= 1) return 0;
+    for (int i = 2; i * i <= num; i++) {
+        if (num % i == 0) return 0;
+    }
+    return 1;
+}
+
+int sumOfPrimes(int n) {
+    int sum = 0;
+    for (int i = 2; i <= n; i++) {
+        if (isPrime(i)) {
+            sum += i;
+        }
+    }
+    return sum;
+}
+
+int main() {
+    int n;
+    scanf(""%d"", &n);
+    printf(""T?ng s? nguyên t? t? 1 ??n %d: %d\n"", n, sumOfPrimes(n));
+    return 0;
+}"										
+102	Vi?t hàm ki?m tra s? hoàn h?o.	"#include <stdio.h>
+
+int isPerfectNumber(int num) {
+    if (num <= 1) return 0;
+    int sum = 1;
+    for (int i = 2; i * i <= num; i++) {
+        if (num % i == 0) {
+            sum += i;
+            if (i != num / i) {
+                sum += num / i;
+            }
+        }
+    }
+    return sum == num;
+}
+
+int main() {
+    int n;
+    scanf(""%d"", &n);
+    printf(isPerfectNumber(n) ? ""%d là s? hoàn h?o.\n"" : ""%d không là s? hoàn h?o.\n"", n);
+    return 0;
+}"										
+103	"Vi?t hàm in ra các s? chia h?t cho 3 nh?ng không chia h?t cho 5 trong kho?ng [a, b]."	"#include <stdio.h>
+
+void printNumbers(int a, int b) {
+    for (int i = a; i <= b; i++) {
+        if (i % 3 == 0 && i % 5 != 0) {
+            printf(""%d "", i);
+        }
+    }
+    printf(""\n"");
+}
+
+int main() {
+    int a, b;
+    scanf(""%d %d"", &a, &b);
+    printNumbers(a, b);
+    return 0;
+}"										
+104	Vi?t hàm tính t?ng S = 1 + 1/2 + 1/3 + ... + 1/n.	"#include <stdio.h>
+
+void printNumbers(int a, int b) {
+    for (int i = a; i <= b; i++) {
+        if (i % 3 == 0 && i % 5 != 0) {
+            printf(""%d "", i);
+        }
+    }
+    printf(""\n"");
+}
+
+int main() {
+    int a, b;
+    scanf(""%d %d"", &a, &b);
+    printNumbers(a, b);
+    return 0;
+}"										
+105	Vi?t hàm chuy?n ??i s? giây thành gi? - phút - giây.	"#include <stdio.h>
+
+float calculateSum(int n) {
+    float sum = 0;
+    for (int i = 1; i <= n; i++) {
+        sum += 1.0 / i;
+    }
+    return sum;
+}
+
+int main() {
+    int n;
+    scanf(""%d"", &n);
+    printf(""T?ng: %.2f\n"", calculateSum(n));
+    return 0;
+}"										
+106	"Vi?t hàm tính di?n tích các hình: tam giác, hình tròn, hình ch? nh?t (3 hàm riêng)."	"#include <stdio.h>
+
+void convertSeconds(int totalSeconds) {
+    int h = totalSeconds / 3600;
+    int m = (totalSeconds % 3600) / 60;
+    int s = totalSeconds % 60;
+    printf(""%02d:%02d:%02d\n"", h, m, s);
+}
+
+int main() {
+    int totalSeconds;
+    scanf(""%d"", &totalSeconds);
+    convertSeconds(totalSeconds);
+    return 0;
+}"										
+107	Vi?t hàm tìm UCLN và BCNN c?a hai s? nguyên (hai hàm riêng).	"#include <stdio.h>
+
+int gcd(int a, int b) {
+    while (b != 0) {
+        int temp = b;
+        b = a % b;
+        a = temp;
+    }
+    return a;
+}
+
+int lcm(int a, int b) {
+    return (a * b) / gcd(a, b);
+}
+
+int main() {
+    int a, b;
+    scanf(""%d %d"", &a, &b);
+    printf(""UCLN: %d\n"", gcd(a, b));
+    printf(""BCNN: %d\n"", lcm(a, b));
+    return 0;
+}"										
+108	"Vi?t hàm nh?p m?ng, xu?t m?ng và tìm giá tr? l?n nh?t trong m?ng (ba hàm riêng)."	"#include <stdio.h>
+
+void inputArray(int arr[], int n) {
+    for (int i = 0; i < n; i++) {
+        scanf(""%d"", &arr[i]);
+    }
+}
+
+void printArray(int arr[], int n) {
+    for (int i = 0; i < n; i++) {
+        printf(""%d "", arr[i]);
+    }
+    printf(""\n"");
+}
+
+int findMax(int arr[], int n) {
+    int max = arr[0];
+    for (int i = 1; i < n; i++) {
+        if (arr[i] > max) {
+            max = arr[i];
+        }
+    }
+    return max;
+}
+
+int main() {
+    int n;
+    printf(""Nh?p s? ph?n t?: "");
+    scanf(""%d"", &n);
+    int arr[n];
+    inputArray(arr, n);
+    printf(""M?ng: "");
+    printArray(arr, n);
+    printf(""Giá tr? l?n nh?t: %d\n"", findMax(arr, n));
+    return 0;
+}"										
+109	Vi?t hàm s?p x?p m?ng 1 chi?u theo th? t? t?ng d?n.	"#include <stdio.h>
+
+void sortArray(int arr[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+}
+
+int main() {
+    int n;
+    printf(""Nh?p s? ph?n t?: "");
+    scanf(""%d"", &n);
+    int arr[n];
+    for (int i = 0; i < n; i++) {
+        scanf(""%d"", &arr[i]);
+    }
+    sortArray(arr, n);
+    printf(""M?ng sau s?p x?p: "");
+    for (int i = 0; i < n; i++) {
+        printf(""%d "", arr[i]);
+    }
+    printf(""\n"");
+    return 0;
+}"										
+110	"Vi?t ch??ng trình menu (dùng switch-case) g?i các hàm th?c hi?n phép tính: c?ng, tr?, nhân, chia."	"#include <stdio.h>
+
+void sortArray(int arr[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+}
+
+int main() {
+    int n;
+    printf(""Nh?p s? ph?n t?: "");
+    scanf(""%d"", &n);
+    int arr[n];
+    for (int i = 0; i < n; i++) {
+        scanf(""%d"", &arr[i]);
+    }
+    sortArray(arr, n);
+    printf(""M?ng sau s?p x?p: "");
+    for (int i = 0; i < n; i++) {
+        printf(""%d "", arr[i]);
+    }
+    printf(""\n"");
+    return 0;
+}"										
+111	Nh?p và in ra các ph?n t? c?a m?ng.	"#include <stdio.h>
+
+float add(float a, float b) { return a + b; }
+float subtract(float a, float b) { return a - b; }
+float multiply(float a, float b) { return a * b; }
+float divide(float a, float b) { return b != 0 ? a / b : 0; }
+
+int main() {
+    int choice;
+    float a, b;
+    printf(""Ch?n phép tính (1: C?ng, 2: Tr?, 3: Nhân, 4: Chia): "");
+    scanf(""%d"", &choice);
+    printf(""Nh?p hai s?: "");
+    scanf(""%f %f"", &a, &b);
+    switch (choice) {
+        case 1: printf(""K?t qu?: %.2f\n"", add(a, b)); break;
+        case 2: printf(""K?t qu?: %.2f\n"", subtract(a, b)); break;
+        case 3: printf(""K?t qu?: %.2f\n"", multiply(a, b)); break;
+        case 4:
+            if (b != 0) {
+                printf(""K?t qu?: %.2f\n"", divide(a, b));
+            } else {
+                printf(""Không th? chia cho 0.\n"");
+            }
+            break;
+        default: printf(""L?a ch?n không h?p l?.\n"");
+    }
+    return 0;
+}"										
+112	Tính t?ng các ph?n t? trong m?ng.	"#include <stdio.h>
+
+int main() {
+    int n, sum = 0;
+    printf(""Nh?p s? ph?n t?: "");
+    scanf(""%d"", &n);
+    int arr[n];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < n; i++) {
+        scanf(""%d"", &arr[i]);
+        sum += arr[i];
+    }
+    printf(""T?ng: %d\n"", sum);
+    return 0;
+}"										
+113	Tính trung bình c?ng các ph?n t? trong m?t m?ng.	"#include <stdio.h>
+
+int main() {
+    int n;
+    float sum = 0;
+    printf(""Nh?p s? ph?n t?: "");
+    scanf(""%d"", &n);
+    int arr[n];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < n; i++) {
+        scanf(""%d"", &arr[i]);
+        sum += arr[i];
+    }
+    printf(""Trung bình c?ng: %.2f\n"", sum / n);
+    return 0;
+}"										
+114	"??m s? l??ng s? ch?n, s? l? trong m?ng."	"#include <stdio.h>
+
+int main() {
+    int n, even = 0, odd = 0;
+    printf(""Nh?p s? ph?n t?: "");
+    scanf(""%d"", &n);
+    int arr[n];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < n; i++) {
+        scanf(""%d"", &arr[i]);
+        if (arr[i] % 2 == 0) {
+            even++;
+        } else {
+            odd++;
+        }
+    }
+    printf(""S? ch?n: %d\nS? l?: %d\n"", even, odd);
+    return 0;
+}"										
+115	Tìm ph?n t? l?n nh?t và nh? nh?t trong m?ng.	"#include <stdio.h>
+
+int main() {
+    int n, even = 0, odd = 0;
+    printf(""Nh?p s? ph?n t?: "");
+    scanf(""%d"", &n);
+    int arr[n];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < n; i++) {
+        scanf(""%d"", &arr[i]);
+        if (arr[i] % 2 == 0) {
+            even++;
+        } else {
+            odd++;
+        }
+    }
+    printf(""S? ch?n: %d\nS? l?: %d\n"", even, odd);
+    return 0;
+}"										
+116	Tính t?ng các ph?n t? ch?n trong m?ng.	"#include <stdio.h>
+
+int main() {
+    int n;
+    printf(""Nh?p s? ph?n t?: "");
+    scanf(""%d"", &n);
+    int arr[n];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < n; i++) {
+        scanf(""%d"", &arr[i]);
+    }
+    int max = arr[0], min = arr[0];
+    for (int i = 1; i < n; i++) {
+        if (arr[i] > max) {
+            max = arr[i];
+        }
+        if (arr[i] < min) {
+            min = arr[i];
+        }
+    }
+    printf(""L?n nh?t: %d\nNh? nh?t: %d\n"", max, min);
+    return 0;
+}"										
+117	Tính t?ng các ph?n t? l? trong m?ng.	"#include <stdio.h>
+
+int main() {
+    int n;
+    printf(""Nh?p s? ph?n t?: "");
+    scanf(""%d"", &n);
+    int arr[n];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < n; i++) {
+        scanf(""%d"", &arr[i]);
+    }
+    int max = arr[0], min = arr[0];
+    for (int i = 1; i < n; i++) {
+        if (arr[i] > max) {
+            max = arr[i];
+        }
+        if (arr[i] < min) {
+            min = arr[i];
+        }
+    }
+    printf(""L?n nh?t: %d\nNh? nh?t: %d\n"", max, min);
+    return 0;
+}"										
+118	Tìm ph?n t? d??ng l?n nh?t và âm nh? nh?t trong m?t m?ng.	"#include <stdio.h>
+#include <limits.h>
+
+int main() {
+    int n;
+    printf(""Nh?p s? ph?n t?: "");
+    scanf(""%d"", &n);
+    int arr[n];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < n; i++) {
+        scanf(""%d"", &arr[i]);
+    }
+    int maxPositive = INT_MIN, minNegative = INT_MAX;
+    for (int i = 0; i < n; i++) {
+        if (arr[i] > 0 && arr[i] > maxPositive) {
+            maxPositive = arr[i];
+        }
+        if (arr[i] < 0 && arr[i] < minNegative) {
+            minNegative = arr[i];
+        }
+    }
+    printf(""D??ng l?n nh?t: %d\nÂm nh? nh?t: %d\n"", maxPositive, minNegative);
+    return 0;
+}"										
+119	Ki?m tra m?ng có ch?a s? 0 hay không.	"#include <stdio.h>
+
+int main() {
+    int n, hasZero = 0;
+    printf(""Nh?p s? ph?n t?: "");
+    scanf(""%d"", &n);
+    int arr[n];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < n; i++) {
+        scanf(""%d"", &arr[i]);
+        if (arr[i] == 0) {
+            hasZero = 1;
+        }
+    }
+    printf(hasZero ? ""M?ng có ch?a s? 0.\n"" : ""M?ng không ch?a s? 0.\n"");
+    return 0;
+}"										
+120	??m s? ph?n t? l?n h?n giá tr? trung bình trong m?t m?ng.	"#include <stdio.h>
+
+int main() {
+    int n, count = 0;
+    float sum = 0;
+    printf(""Nh?p s? ph?n t?: "");
+    scanf(""%d"", &n);
+    int arr[n];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < n; i++) {
+        scanf(""%d"", &arr[i]);
+        sum += arr[i];
+    }
+    float avg = sum / n;
+    for (int i = 0; i < n; i++) {
+        if (arr[i] > avg) {
+            count++;
+        }
+    }
+    printf(""S? ph?n t? l?n h?n trung bình: %d\n"", count);
+    return 0;
+}"										
+121	??m s? l?n xu?t hi?n c?a m?t giá tr? x cho tr??c trong m?t m?ng.	"#include <stdio.h>
+
+int main() {
+    int n, x, count = 0;
+    printf(""Nh?p s? ph?n t?: "");
+    scanf(""%d"", &n);
+    int arr[n];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < n; i++) {
+        scanf(""%d"", &arr[i]);
+    }
+    printf(""Nh?p giá tr? x: "");
+    scanf(""%d"", &x);
+    for (int i = 0; i < n; i++) {
+        if (arr[i] == x) {
+            count++;
+        }
+    }
+    printf(""S? l?n xu?t hi?n c?a %d: %d\n"", x, count);
+    return 0;
+}"										
+122	S?p x?p m?ng t?ng d?n s? d?ng thu?t toán n?i b?t (bubble sort).	"#include <stdio.h>
+
+void bubbleSort(int arr[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+}
+
+int main() {
+    int n;
+    printf(""Nh?p s? ph?n t?: "");
+    scanf(""%d"", &n);
+    int arr[n];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < n; i++) {
+        scanf(""%d"", &arr[i]);
+    }
+    bubbleSort(arr, n);
+    printf(""M?ng sau s?p x?p: "");
+    for (int i = 0; i < n; i++) {
+        printf(""%d "", arr[i]);
+    }
+    printf(""\n"");
+    return 0;
+}"										
+123	S?p x?p m?ng gi?m d?n s? d?ng thu?t toán s?p x?p chèn (insertion sort).	"void insertionSort(int arr[], int n) {
+    for (int i = 1; i < n; i++) {
+        int key = arr[i];
+        int j = i - 1;
+        while (j >= 0 && arr[j] < key) {
+            arr[j + 1] = arr[j];
+            j--;
+        }
+        arr[j + 1] = key;
+    }
+}
+
+int main() {
+    int n;
+    printf(""Nh?p s? ph?n t?: "");
+    scanf(""%d"", &n);
+    int arr[n];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < n; i++) {
+        scanf(""%d"", &arr[i]);
+    }
+    insertionSort(arr, n);
+    printf(""M?ng sau s?p x?p: "");
+    for (int i = 0; i < n; i++) {
+        printf(""%d "", arr[i]);
+    }
+    printf(""\n"");
+    return 0;
+}"										
+124	S?p x?p m?ng gi?m d?n s? d?ng thu?t toán s?p x?p l?a ch?n (selection sort).	"#include <stdio.h>
+
+void selectionSort(int arr[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        int maxIndex = i;
+        for (int j = i + 1; j < n; j++) {
+            if (arr[j] > arr[maxIndex]) {
+                maxIndex = j;
+            }
+        }
+        int temp = arr[i];
+        arr[i] = arr[maxIndex];
+        arr[maxIndex] = temp;
+    }
+}
+
+int main() {
+    int n;
+    printf(""Nh?p s? ph?n t?: "");
+    scanf(""%d"", &n);
+    int arr[n];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < n; i++) {
+        scanf(""%d"", &arr[i]);
+    }
+    selectionSort(arr, n);
+    printf(""M?ng sau s?p x?p: "");
+    for (int i = 0; i < n; i++) {
+        printf(""%d "", arr[i]);
+    }
+    printf(""\n"");
+    return 0;
+}"										
+125	Tìm t?t c? các s? nguyên t? trong m?ng.	"#include <stdio.h>
+
+int isPrime(int num) {
+    if (num <= 1) return 0;
+    for (int i = 2; i * i <= num; i++) {
+        if (num % i == 0) return 0;
+    }
+    return 1;
+}
+
+int main() {
+    int n;
+    printf(""Nh?p s? ph?n t?: "");
+    scanf(""%d"", &n);
+    int arr[n];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < n; i++) {
+        scanf(""%d"", &arr[i]);
+    }
+    printf(""Các s? nguyên t? trong m?ng: "");
+    for (int i = 0; i < n; i++) {
+        if (isPrime(arr[i])) {
+            printf(""%d "", arr[i]);
+        }
+    }
+    printf(""\n"");
+    return 0;
+}"										
+126	Chèn ph?n t? x vào v? trí k trong m?ng.	"#include <stdio.h>
+
+int main() {
+    int n, x, k;
+    printf(""Nh?p s? ph?n t?: "");
+    scanf(""%d"", &n);
+    int arr[n + 1];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < n; i++) {
+        scanf(""%d"", &arr[i]);
+    }
+    printf(""Nh?p giá tr? x và v? trí k: "");
+    scanf(""%d %d"", &x, &k);
+    if (k < 0 || k > n) {
+        printf(""V? trí không h?p l?.\n"");
+        return 0;
+    }
+    for (int i = n; i > k; i--) {
+        arr[i] = arr[i - 1];
+    }
+    arr[k] = x;
+    printf(""M?ng sau khi chèn: "");
+    for (int i = 0; i <= n; i++) {
+        printf(""%d "", arr[i]);
+    }
+    printf(""\n"");
+    return 0;
+}"										
+127	Xóa ph?n t? có giá tr? x trong m?ng.	"#include <stdio.h>
+
+int main() {
+    int n, x, found = 0;
+    printf(""Nh?p s? ph?n t?: "");
+    scanf(""%d"", &n);
+    int arr[n];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < n; i++) {
+        scanf(""%d"", &arr[i]);
+    }
+    printf(""Nh?p giá tr? x c?n xóa: "");
+    scanf(""%d"", &x);
+    int newSize = 0;
+    for (int i = 0; i < n; i++) {
+        if (arr[i] != x) {
+            arr[newSize++] = arr[i];
+        } else {
+            found = 1;
+        }
+    }
+    if (found) {
+        printf(""M?ng sau khi xóa: "");
+        for (int i = 0; i < newSize; i++) {
+            printf(""%d "", arr[i]);
+        }
+        printf(""\n"");
+    } else {
+        printf(""Không tìm th?y %d trong m?ng.\n"", x);
+    }
+    return 0;
+}"										
+128	G?p hai m?ng thành m?t m?ng m?i.	"#include <stdio.h>
+
+int main() {
+    int n1, n2;
+    printf(""Nh?p s? ph?n t? m?ng 1: "");
+    scanf(""%d"", &n1);
+    int arr1[n1];
+    printf(""Nh?p các ph?n t? m?ng 1:\n"");
+    for (int i = 0; i < n1; i++) {
+        scanf(""%d"", &arr1[i]);
+    }
+    printf(""Nh?p s? ph?n t? m?ng 2: "");
+    scanf(""%d"", &n2);
+    int arr2[n2];
+    printf(""Nh?p các ph?n t? m?ng 2:\n"");
+    for (int i = 0; i < n2; i++) {
+        scanf(""%d"", &arr2[i]);
+    }
+    int merged[n1 + n2];
+    for (int i = 0; i < n1; i++) {
+        merged[i] = arr1[i];
+    }
+    for (int i = 0; i < n2; i++) {
+        merged[n1 + i] = arr2[i];
+    }
+    printf(""M?ng g?p: "");
+    for (int i = 0; i < n1 + n2; i++) {
+        printf(""%d "", merged[i]);
+    }
+    printf(""\n"");
+    return 0;
+}"										
+129	G?p hai m?ng thành m?t m?ng m?i theo m?t tr?t t? (t?ng ho?c gi?m d?n).	"#include <stdio.h>
+
+void sortArray(int arr[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+}
+
+int main() {
+    int n1, n2;
+    printf(""Nh?p s? ph?n t? m?ng 1: "");
+    scanf(""%d"", &n1);
+    int arr1[n1];
+    printf(""Nh?p các ph?n t? m?ng 1:\n"");
+    for (int i = 0; i < n1; i++) {
+        scanf(""%d"", &arr1[i]);
+    }
+    printf(""Nh?p s? ph?n t? m?ng 2: "");
+    scanf(""%d"", &n2);
+    int arr2[n2];
+    printf(""Nh?p các ph?n t? m?ng 2:\n"");
+    for (int i = 0; i < n2; i++) {
+        scanf(""%d"", &arr2[i]);
+    }
+    sortArray(arr1, n1);
+    sortArray(arr2, n2);
+    int merged[n1 + n2];
+    int i = 0, j = 0, k = 0;
+    while (i < n1 && j < n2) {
+        if (arr1[i] < arr2[j]) {
+            merged[k++] = arr1[i++];
+        } else {
+            merged[k++] = arr2[j++];
+        }
+    }
+    while (i < n1) {
+        merged[k++] = arr1[i++];
+    }
+    while (j < n2) {
+        merged[k++] = arr2[j++];
+    }
+    printf(""M?ng g?p t?ng d?n: "");
+    for (int i = 0; i < n1 + n2; i++) {
+        printf(""%d "", merged[i]);
+    }
+    printf(""\n"");
+    return 0;
+}"										
+130	"G?p hai m?ng thành m?t m?ng m?i theo m?t tr?t t? c? m?t ph?n t? c?a m?ng này thì ??n m?t ph?n t? c?a m?ng kia, n?u không còn ph?n t? c?a m?ng kia (ho?c này) thì vi?t liên ti?p các ph?n t? còn l?i c?a m?ng còn l?i."	"#include <stdio.h>
+
+int main() {
+    int n1, n2;
+    printf(""Nh?p s? ph?n t? m?ng 1: "");
+    scanf(""%d"", &n1);
+    int arr1[n1];
+    printf(""Nh?p các ph?n t? m?ng 1:\n"");
+    for (int i = 0; i < n1; i++) {
+        scanf(""%d"", &arr1[i]);
+    }
+    printf(""Nh?p s? ph?n t? m?ng 2: "");
+    scanf(""%d"", &n2);
+    int arr2[n2];
+    printf(""Nh?p các ph?n t? m?ng 2:\n"");
+    for (int i = 0; i < n2; i++) {
+        scanf(""%d"", &arr2[i]);
+    }
+    int merged[n1 + n2];
+    int i = 0, j = 0, k = 0;
+    while (i < n1 && j < n2) {
+        merged[k++] = arr1[i++];
+        merged[k++] = arr2[j++];
+    }
+    while (i < n1) {
+        merged[k++] = arr1[i++];
+    }
+    while (j < n2) {
+        merged[k++] = arr2[j++];
+    }
+    printf(""M?ng g?p xen k?: "");
+    for (int i = 0; i < n1 + n2; i++) {
+        printf(""%d "", merged[i]);
+    }
+    printf(""\n"");
+    return 0;
+}"										
+131	Tách m?ng thành hai m?ng: m?ng ch?n và m?ng l?.	"#include <stdio.h>
+
+int main() {
+    int n;
+    printf(""Nh?p s? ph?n t?: "");
+    scanf(""%d"", &n);
+    int arr[n], even[n], odd[n];
+    int evenCount = 0, oddCount = 0;
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < n; i++) {
+        scanf(""%d"", &arr[i]);
+        if (arr[i] % 2 == 0) {
+            even[evenCount++] = arr[i];
+        } else {
+            odd[oddCount++] = arr[i];
+        }
+    }
+    printf(""M?ng ch?n: "");
+    for (int i = 0; i < evenCount; i++) {
+        printf(""%d "", even[i]);
+    }
+    printf(""\nM?ng l?: "");
+    for (int i = 0; i < oddCount; i++) {
+        printf(""%d "", odd[i]);
+    }
+    printf(""\n"");
+    return 0;
+}"										
+132	Tách m?ng thành hai m?ng: m?ng g?m các s? l?n h?n và m?ng g?m các s? nh? h?n m?t s? x	"#include <stdio.h>
+
+int main() {
+    int n, x;
+    printf(""Nh?p s? ph?n t?: "");
+    scanf(""%d"", &n);
+    int arr[n], greater[n], smaller[n];
+    int greaterCount = 0, smallerCount = 0;
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < n; i++) {
+        scanf(""%d"", &arr[i]);
+    }
+    printf(""Nh?p giá tr? x: "");
+    scanf(""%d"", &x);
+    for (int i = 0; i < n; i++) {
+        if (arr[i] > x) {
+            greater[greaterCount++] = arr[i];
+        } else {
+            smaller[smallerCount++] = arr[i];
+        }
+    }
+    printf(""M?ng l?n h?n x: "");
+    for (int i = 0; i < greaterCount; i++) {
+        printf(""%d "", greater[i]);
+    }
+    printf(""\nM?ng nh? h?n ho?c b?ng x: "");
+    for (int i = 0; i < smallerCount; i++) {
+        printf(""%d "", smaller[i]);
+    }
+    printf(""\n"");
+    return 0;
+}"										
+133	??o ng??c m?ng (reverse array).	"#include <stdio.h>
+
+int main() {
+    int n;
+    printf(""Nh?p s? ph?n t?: "");
+    scanf(""%d"", &n);
+    int arr[n];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < n; i++) {
+        scanf(""%d"", &arr[i]);
+    }
+    printf(""M?ng ??o ng??c: "");
+    for (int i = n - 1; i >= 0; i--) {
+        printf(""%d "", arr[i]);
+    }
+    printf(""\n"");
+    return 0;
+}"										
+134	Ki?m tra m?ng có t?ng d?n không.	"#include <stdio.h>
+
+int isIncreasing(int arr[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        if (arr[i] > arr[i + 1]) {
+            return 0;
+        }
+    }
+    return 1;
+}
+
+int main() {
+    int n;
+    printf(""Nh?p s? ph?n t?: "");
+    scanf(""%d"", &n);
+    int arr[n];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < n; i++) {
+        scanf(""%d"", &arr[i]);
+    }
+    printf(isIncreasing(arr, n) ? ""M?ng t?ng d?n.\n"" : ""M?ng không t?ng d?n.\n"");
+    return 0;
+}"										
+135	Ki?m tra m?ng có gi?m d?n không.	"#include <stdio.h>
+
+int isDecreasing(int arr[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        if (arr[i] < arr[i + 1]) {
+            return 0;
+        }
+    }
+    return 1;
+}
+
+int main() {
+    int n;
+    printf(""Nh?p s? ph?n t?: "");
+    scanf(""%d"", &n);
+    int arr[n];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < n; i++) {
+        scanf(""%d"", &arr[i]);
+    }
+    printf(isDecreasing(arr, n) ? ""M?ng gi?m d?n.\n"" : ""M?ng không gi?m d?n.\n"");
+    return 0;
+}"										
+136	Tìm dãy con t?ng dài nh?t trong m?ng. 	"#include <stdio.h>
+
+int main() {
+    int n;
+    printf(""Nh?p s? ph?n t?: "");
+    scanf(""%d"", &n);
+    int arr[n];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < n; i++) {
+        scanf(""%d"", &arr[i]);
+    }
+    int maxLength = 1, currentLength = 1, endIndex = 0;
+    for (int i = 1; i < n; i++) {
+        if (arr[i] > arr[i - 1]) {
+            currentLength++;
+            if (currentLength > maxLength) {
+                maxLength = currentLength;
+                endIndex = i;
+            }
+        } else {
+            currentLength = 1;
+        }
+    }
+    printf(""Dãy con t?ng dài nh?t: "");
+    for (int i = endIndex - maxLength + 1; i <= endIndex; i++) {
+        printf(""%d "", arr[i]);
+    }
+    printf(""\n"");
+    return 0;
+}"										
+137	Nh?p và in ra ma tr?n (m?ng 2 chi?u) kích th??c m x n.	"#include <stdio.h>
+
+int main() {
+    int m, n;
+    printf(""Nh?p s? hàng và s? c?t: "");
+    scanf(""%d %d"", &m, &n);
+    int matrix[m][n];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf(""%d"", &matrix[i][j]);
+        }
+    }
+    printf(""Ma tr?n:\n"");
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            printf(""%d "", matrix[i][j]);
+        }
+        printf(""\n"");
+    }
+    return 0;
+}"										
+138	Tính t?ng t?t c? các ph?n t? trong ma tr?n.	"#include <stdio.h>
+
+int main() {
+    int m, n, sum = 0;
+    printf(""Nh?p s? hàng và s? c?t: "");
+    scanf(""%d %d"", &m, &n);
+    int matrix[m][n];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf(""%d"", &matrix[i][j]);
+            sum += matrix[i][j];
+        }
+    }
+    printf(""T?ng: %d\n"", sum);
+    return 0;
+}"										
+139	Tính t?ng các ph?n t? n?m trên dòng th? i.	"#include <stdio.h>
+
+int main() {
+    int m, n, i;
+    printf(""Nh?p s? hàng và s? c?t: "");
+    scanf(""%d %d"", &m, &n);
+    int matrix[m][n];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf(""%d"", &matrix[i][j]);
+        }
+    }
+    printf(""Nh?p dòng i: "");
+    scanf(""%d"", &i);
+    if (i < 0 || i >= m) {
+        printf(""Dòng không h?p l?.\n"");
+        return 0;
+    }
+    int sum = 0;
+    for (int j = 0; j < n; j++) {
+        sum += matrix[i][j];
+    }
+    printf(""T?ng dòng %d: %d\n"", i, sum);
+    return 0;
+}"										
+140	Tính t?ng các ph?n t? n?m ? c?t th? j.	"#include <stdio.h>
+
+int main() {
+    int m, n, j;
+    printf(""Nh?p s? hàng và s? c?t: "");
+    scanf(""%d %d"", &m, &n);
+    int matrix[m][n];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf(""%d"", &matrix[i][j]);
+        }
+    }
+    printf(""Nh?p c?t j: "");
+    scanf(""%d"", &j);
+    if (j < 0 || j >= n) {
+        printf(""C?t không h?p l?.\n"");
+        return 0;
+    }
+    int sum = 0;
+    for (int i = 0; i < m; i++) {
+        sum += matrix[i][j];
+    }
+    printf(""T?ng c?t %d: %d\n"", j, sum);
+    return 0;
+}"										
+141	Tìm ph?n t? l?n nh?t và nh? nh?t trong ma tr?n.	"#include <stdio.h>
+#include <limits.h>
+
+int main() {
+    int m, n;
+    printf(""Nh?p s? hàng và s? c?t: "");
+    scanf(""%d %d"", &m, &n);
+    int matrix[m][n];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf(""%d"", &matrix[i][j]);
+        }
+    }
+    int max = INT_MIN, min = INT_MAX;
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            if (matrix[i][j] > max) {
+                max = matrix[i][j];
+            }
+            if (matrix[i][j] < min) {
+                min = matrix[i][j];
+            }
+        }
+    }
+    printf(""L?n nh?t: %d\nNh? nh?t: %d\n"", max, min);
+    return 0;
+}"										
+142	Tính t?ng các ph?n t? trên ???ng chéo chính.	"#include <stdio.h>
+
+int main() {
+    int n;
+    printf(""Nh?p kích th??c ma tr?n vuông: "");
+    scanf(""%d"", &n);
+    int matrix[n][n];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf(""%d"", &matrix[i][j]);
+        }
+    }
+    int sum = 0;
+    for (int i = 0; i < n; i++) {
+        sum += matrix[i][i];
+    }
+    printf(""T?ng ???ng chéo chính: %d\n"", sum);
+    return 0;
+}"										
+143	Tính t?ng các ph?n t? trên ???ng chéo ph?.	"#include <stdio.h>
+
+int main() {
+    int n;
+    printf(""Nh?p kích th??c ma tr?n vuông: "");
+    scanf(""%d"", &n);
+    int matrix[n][n];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf(""%d"", &matrix[i][j]);
+        }
+    }
+    int sum = 0;
+    for (int i = 0; i < n; i++) {
+        sum += matrix[i][n - 1 - i];
+    }
+    printf(""T?ng ???ng chéo ph?: %d\n"", sum);
+    return 0;
+}"										
+144	Tìm các ph?n t? l?n nh?t c?a các hàng trong m?t ma tr?n.	"#include <stdio.h>
+#include <limits.h>
+
+int main() {
+    int m, n;
+    printf(""Nh?p s? hàng và s? c?t: "");
+    scanf(""%d %d"", &m, &n);
+    int matrix[m][n];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf(""%d"", &matrix[i][j]);
+        }
+    }
+    printf(""Ph?n t? l?n nh?t t?ng hàng:\n"");
+    for (int i = 0; i < m; i++) {
+        int max = INT_MIN;
+        for (int j = 0; j < n; j++) {
+            if (matrix[i][j] > max) {
+                max = matrix[i][j];
+            }
+        }
+        printf(""Hàng %d: %d\n"", i, max);
+    }
+    return 0;
+}"										
+145	Tìm các ph?n t? l?n nh?t c?a các c?t trong m?t ma tr?n.	"#include <stdio.h>
+#include <limits.h>
+
+int main() {
+    int m, n;
+    printf(""Nh?p s? hàng và s? c?t: "");
+    scanf(""%d %d"", &m, &n);
+    int matrix[m][n];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf(""%d"", &matrix[i][j]);
+        }
+    }
+    printf(""Ph?n t? l?n nh?t t?ng c?t:\n"");
+    for (int j = 0; j < n; j++) {
+        int max = INT_MIN;
+        for (int i = 0; i < m; i++) {
+            if (matrix[i][j] > max) {
+                max = matrix[i][j];
+            }
+        }
+        printf(""C?t %d: %d\n"", j, max);
+    }
+    return 0;
+}"										
+146	Tìm các ph?n t? l?n nh?t c?a ???ng chéo chính trong m?t ma tr?n.	"#include <stdio.h>
+#include <limits.h>
+
+int main() {
+    int n;
+    printf(""Nh?p kích th??c ma tr?n vuông: "");
+    scanf(""%d"", &n);
+    int matrix[n][n];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf(""%d"", &matrix[i][j]);
+        }
+    }
+    int max = INT_MIN;
+    for (int i = 0; i < n; i++) {
+        if (matrix[i][i] > max) {
+            max = matrix[i][i];
+        }
+    }
+    printf(""L?n nh?t ???ng chéo chính: %d\n"", max);
+    return 0;
+}"										
+147	Tìm các ph?n t? l?n nh?t c?a ???ng chéo ph? trong m?t ma tr?n.	"#include <stdio.h>
+#include <limits.h>
+
+int main() {
+    int n;
+    printf(""Nh?p kích th??c ma tr?n vuông: "");
+    scanf(""%d"", &n);
+    int matrix[n][n];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf(""%d"", &matrix[i][j]);
+        }
+    }
+    int max = INT_MIN;
+    for (int i = 0; i < n; i++) {
+        if (matrix[i][n - 1 - i] > max) {
+            max = matrix[i][n - 1 - i];
+        }
+    }
+    printf(""L?n nh?t ???ng chéo ph?: %d\n"", max);
+    return 0;
+}"										
+148	Tìm các ph?n t? l?n nh?t c?a n?a tam giác trên g?m c? ???ng chéo chính trong m?t ma tr?n vuông.	"#include <stdio.h>
+#include <limits.h>
+
+int main() {
+    int n;
+    printf(""Nh?p kích th??c ma tr?n vuông: "");
+    scanf(""%d"", &n);
+    int matrix[n][n];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf(""%d"", &matrix[i][j]);
+        }
+    }
+    int max = INT_MIN;
+    for (int i = 0; i < n; i++) {
+        for (int j = i; j < n; j++) {
+            if (matrix[i][j] > max) {
+                max = matrix[i][j];
+            }
+        }
+    }
+    printf(""L?n nh?t n?a tam giác trên: %d\n"", max);
+    return 0;
+}"										
+149	Tìm các ph?n t? l?n nh?t c?a n?a tam giác d??i g?m c? ???ng chéo chính trong m?t ma tr?n vuông.	"#include <stdio.h>
+#include <limits.h>
+
+int main() {
+    int n;
+    printf(""Nh?p kích th??c ma tr?n vuông: "");
+    scanf(""%d"", &n);
+    int matrix[n][n];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf(""%d"", &matrix[i][j]);
+        }
+    }
+    int max = INT_MIN;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j <= i; j++) {
+            if (matrix[i][j] > max) {
+                max = matrix[i][j];
+            }
+        }
+    }
+    printf(""L?n nh?t n?a tam giác d??i: %d\n"", max);
+    return 0;
+}"										
+150	Tìm các ph?n t? l?n nh?t c?a n?a tam giác trên g?m c? ???ng chéo ph? trong m?t ma tr?n vuông.	"#include <stdio.h>
+#include <limits.h>
+
+int main() {
+    int n;
+    printf(""Nh?p kích th??c ma tr?n vuông: "");
+    scanf(""%d"", &n);
+    int matrix[n][n];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf(""%d"", &matrix[i][j]);
+        }
+    }
+    int max = INT_MIN;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n - i; j++) {
+            if (matrix[i][j] > max) {
+                max = matrix[i][j];
+            }
+        }
+    }
+    printf(""L?n nh?t n?a tam giác trên (bao g?m ???ng chéo ph?): %d\n"", max);
+    return 0;
+}"										
+151	Tìm các ph?n t? l?n nh?t c?a n?a tam giác d??i g?m c? ???ng chéo ph? trong m?t ma tr?n vuông.	"#include <stdio.h>
+#include <limits.h>
+
+int main() {
+    int n;
+    printf(""Nh?p kích th??c ma tr?n vuông: "");
+    scanf(""%d"", &n);
+    int matrix[n][n];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf(""%d"", &matrix[i][j]);
+        }
+    }
+    int max = INT_MIN;
+    for (int i = 0; i < n; i++) {
+        for (int j = n - 1 - i; j < n; j++) {
+            if (matrix[i][j] > max) {
+                max = matrix[i][j];
+            }
+        }
+    }
+    printf(""L?n nh?t n?a tam giác d??i (bao g?m ???ng chéo ph?): %d\n"", max);
+    return 0;
+}"										
+152	??m s? l??ng ph?n t? ch?n và l? trong ma tr?n.	"#include <stdio.h>
+
+int main() {
+    int m, n, even = 0, odd = 0;
+    printf(""Nh?p s? hàng và s? c?t: "");
+    scanf(""%d %d"", &m, &n);
+    int matrix[m][n];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf(""%d"", &matrix[i][j]);
+            if (matrix[i][j] % 2 == 0) {
+                even++;
+            } else {
+                odd++;
+            }
+        }
+    }
+    printf(""S? ch?n: %d\nS? l?: %d\n"", even, odd);
+    return 0;
+}"										
+153	??m s? l??ng ph?n t? ch?n và l? trong các hàng c?a ma tr?n.	"#include <stdio.h>
+
+int main() {
+    int m, n;
+    printf(""Nh?p s? hàng và s? c?t: "");
+    scanf(""%d %d"", &m, &n);
+    int matrix[m][n];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf(""%d"", &matrix[i][j]);
+        }
+    }
+    for (int i = 0; i < m; i++) {
+        int even = 0, odd = 0;
+        for (int j = 0; j < n; j++) {
+            if (matrix[i][j] % 2 == 0) {
+                even++;
+            } else {
+                odd++;
+            }
+        }
+        printf(""Hàng %d: S? ch?n: %d, S? l?: %d\n"", i, even, odd);
+    }
+    return 0;
+}"										
+154	??m s? l??ng ph?n t? ch?n và l? trong các c?t c?a ma tr?n.	"#include <stdio.h>
+
+int main() {
+    int m, n;
+    printf(""Nh?p s? hàng và s? c?t: "");
+    scanf(""%d %d"", &m, &n);
+    int matrix[m][n];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf(""%d"", &matrix[i][j]);
+        }
+    }
+    for (int j = 0; j < n; j++) {
+        int even = 0, odd = 0;
+        for (int i = 0; i < m; i++) {
+            if (matrix[i][j] % 2 == 0) {
+                even++;
+            } else {
+                odd++;
+            }
+        }
+        printf(""C?t %d: S? ch?n: %d, S? l?: %d\n"", j, even, odd);
+    }
+    return 0;
+}"										
+155	??m s? l??ng ph?n t? là s? nguyên t? trong ma tr?n.	"#include <stdio.h>
+
+int isPrime(int num) {
+    if (num <= 1) return 0;
+    for (int i = 2; i * i <= num; i++) {
+        if (num % i == 0) return 0;
+    }
+    return 1;
+}
+
+int main() {
+    int m, n, count = 0;
+    printf(""Nh?p s? hàng và s? c?t: "");
+    scanf(""%d %d"", &m, &n);
+    int matrix[m][n];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf(""%d"", &matrix[i][j]);
+            if (isPrime(matrix[i][j])) {
+                count++;
+            }
+        }
+    }
+    printf(""S? l??ng s? nguyên t?: %d\n"", count);
+    return 0;
+}"										
+156	??m s? l??ng ph?n t? là s? nguyên t? trong các hàng c?a ma tr?n.	"#include <stdio.h>
+
+int isPrime(int num) {
+    if (num <= 1) return 0;
+    for (int i = 2; i * i <= num; i++) {
+        if (num % i == 0) return 0;
+    }
+    return 1;
+}
+
+int main() {
+    int m, n;
+    printf(""Nh?p s? hàng và s? c?t: "");
+    scanf(""%d %d"", &m, &n);
+    int matrix[m][n];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf(""%d"", &matrix[i][j]);
+        }
+    }
+    for (int i = 0; i < m; i++) {
+        int count = 0;
+        for (int j = 0; j < n; j++) {
+            if (isPrime(matrix[i][j])) {
+                count++;
+            }
+        }
+        printf(""Hàng %d: S? nguyên t?: %d\n"", i, count);
+    }
+    return 0;
+}"										
+157	??m s? l??ng ph?n t? là s? nguyên t? trong các c?t c?a ma tr?n.	"#include <stdio.h>
+
+int isPrime(int num) {
+    if (num <= 1) return 0;
+    for (int i = 2; i * i <= num; i++) {
+        if (num % i == 0) return 0;
+    }
+    return 1;
+}
+
+int main() {
+    int m, n;
+    printf(""Nh?p s? hàng và s? c?t: "");
+    scanf(""%d %d"", &m, &n);
+    int matrix[m][n];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf(""%d"", &matrix[i][j]);
+        }
+    }
+    for (int j = 0; j < n; j++) {
+        int count = 0;
+        for (int i = 0; i < m; i++) {
+            if (isPrime(matrix[i][j])) {
+                count++;
+            }
+        }
+        printf(""C?t %d: S? nguyên t?: %d\n"", j, count);
+    }
+    return 0;
+}"										
+158	Ki?m tra xem ma tr?n có ph?i là ma tr?n vuông không.	"#include <stdio.h>
+
+int main() {
+    int m, n;
+    printf(""Nh?p s? hàng và s? c?t: "");
+    scanf(""%d %d"", &m, &n);
+    printf(m == n ? ""Ma tr?n vuông.\n"" : ""Không ph?i ma tr?n vuông.\n"");
+    return 0;
+}"										
+159	Ki?m tra xem ma tr?n có ph?i là ma tr?n tam giác trên hay không.	"#include <stdio.h>
+
+int isUpperTriangular(int matrix[][100], int n) {
+    for (int i = 1; i < n; i++) {
+        for (int j = 0; j < i; j++) {
+            if (matrix[i][j] != 0) {
+                return 0;
+            }
+        }
+    }
+    return 1;
+}
+
+int main() {
+    int n;
+    printf(""Nh?p kích th??c ma tr?n vuông: "");
+    scanf(""%d"", &n);
+    int matrix[100][100];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf(""%d"", &matrix[i][j]);
+        }
+    }
+    printf(isUpperTriangular(matrix, n) ? ""Ma tr?n tam giác trên.\n"" : ""Không ph?i ma tr?n tam giác trên.\n"");
+    return 0;
+}"										
+160	Ki?m tra xem ma tr?n có ph?i là ma tr?n ??i x?ng không.	"#include <stdio.h>
+
+int isSymmetric(int matrix[][100], int n) {
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < i; j++) {
+            if (matrix[i][j] != matrix[j][i]) {
+                return 0;
+            }
+        }
+    }
+    return 1;
+}
+
+int main() {
+    int n;
+    printf(""Nh?p kích th??c ma tr?n vuông: "");
+    scanf(""%d"", &n);
+    int matrix[100][100];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf(""%d"", &matrix[i][j]);
+        }
+    }
+    printf(isSymmetric(matrix, n) ? ""Ma tr?n ??i x?ng.\n"" : ""Không ph?i ma tr?n ??i x?ng.\n"");
+    return 0;
+}"										
+161	Ki?m tra xem ma tr?n có ph?i là ma tr?n ??n v? không.	"#include <stdio.h>
+
+int isIdentity(int matrix[][100], int n) {
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            if (i == j && matrix[i][j] != 1) {
+                return 0;
+            }
+            if (i != j && matrix[i][j] != 0) {
+                return 0;
+            }
+        }
+    }
+    return 1;
+}
+
+int main() {
+    int n;
+    printf(""Nh?p kích th??c ma tr?n vuông: "");
+    scanf(""%d"", &n);
+    int matrix[100][100];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf(""%d"", &matrix[i][j]);
+        }
+    }
+    printf(isIdentity(matrix, n) ? ""Ma tr?n ??n v?.\n"" : ""Không ph?i ma tr?n ??n v?.\n"");
+    return 0;
+}"										
+162	Ki?m tra xem ma tr?n có ph?i là ma tr?n ???c c?u thành b?i m?t ma tr?n ??n v? vi?t li?n k? tr??c v?i m?t ma tr?n P không.	"#include <stdio.h>
+
+int isIdentityWithP(int matrix[][100], int n, int p) {
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            if (i == j && matrix[i][j] != 1) {
+                return 0;
+            }
+            if (i != j && matrix[i][j] != p) {
+                return 0;
+            }
+        }
+    }
+    return 1;
+}
+
+int main() {
+    int n, p;
+    printf(""Nh?p kích th??c ma tr?n vuông và giá tr? P: "");
+    scanf(""%d %d"", &n, &p);
+    int matrix[100][100];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf(""%d"", &matrix[i][j]);
+        }
+    }
+    printf(isIdentityWithP(matrix, n, p) ? ""Ma tr?n th?a mãn ?i?u ki?n.\n"" : ""Ma tr?n không th?a mãn ?i?u ki?n.\n"");
+    return 0;
+}"										
+163	Ki?m tra xem ma tr?n có ph?i là ma tr?n ???c c?u thành b?i m?t ma tr?n ??n v? vi?t li?n k? sau c?a m?t ma tr?n P không.	"#include <stdio.h>
+
+int isPWithIdentity(int matrix[][100], int n, int p) {
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            if (i == j && matrix[i][j] != p) {
+                return 0;
+            }
+            if (i != j && matrix[i][j] != 0) {
+                return 0;
+            }
+        }
+    }
+    return 1;
+}
+
+int main() {
+    int n, p;
+    printf(""Nh?p kích th??c ma tr?n vuông và giá tr? P: "");
+    scanf(""%d %d"", &n, &p);
+    int matrix[100][100];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf(""%d"", &matrix[i][j]);
+        }
+    }
+    printf(isPWithIdentity(matrix, n, p) ? ""Ma tr?n th?a mãn ?i?u ki?n.\n"" : ""Ma tr?n không th?a mãn ?i?u ki?n.\n"");
+    return 0;
+}"										
+164	Ki?m tra xem ma tr?n có ph?i là ma tr?n ch? g?m các ph?n t? nh? phân (0 ho?c 1) không?	"#include <stdio.h>
+
+int isBinaryMatrix(int matrix[][100], int m, int n) {
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            if (matrix[i][j] != 0 && matrix[i][j] != 1) {
+                return 0;
+            }
+        }
+    }
+    return 1;
+}
+
+int main() {
+    int m, n;
+    printf(""Nh?p s? hàng và s? c?t: "");
+    scanf(""%d %d"", &m, &n);
+    int matrix[100][100];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf(""%d"", &matrix[i][j]);
+        }
+    }
+    printf(isBinaryMatrix(matrix, m, n) ? ""Ma tr?n nh? phân.\n"" : ""Không ph?i ma tr?n nh? phân.\n"");
+    return 0;
+}"										
+165	S?p x?p t?ng dòng c?a ma tr?n theo th? t? t?ng d?n.	"#include <stdio.h>
+
+void sortRow(int row[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (row[j] > row[j + 1]) {
+                int temp = row[j];
+                row[j] = row[j + 1];
+                row[j + 1] = temp;
+            }
+        }
+    }
+}
+
+int main() {
+    int m, n;
+    printf(""Nh?p s? hàng và s? c?t: "");
+    scanf(""%d %d"", &m, &n);
+    int matrix[100][100];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf(""%d"", &matrix[i][j]);
+        }
+    }
+    for (int i = 0; i < m; i++) {
+        sortRow(matrix[i], n);
+    }
+    printf(""Ma tr?n sau s?p x?p:\n"");
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            printf(""%d "", matrix[i][j]);
+        }
+        printf(""\n"");
+    }
+    return 0;
+}"										
+166	S?p x?p t?ng c?t c?a ma tr?n theo th? t? t?ng d?n.	"#include <stdio.h>
+
+void sortColumn(int matrix[][100], int m, int col) {
+    for (int i = 0; i < m - 1; i++) {
+        for (int j = 0; j < m - i - 1; j++) {
+            if (matrix[j][col] > matrix[j + 1][col]) {
+                int temp = matrix[j][col];
+                matrix[j][col] = matrix[j + 1][col];
+                matrix[j + 1][col] = temp;
+            }
+        }
+    }
+}
+
+int main() {
+    int m, n;
+    printf(""Nh?p s? hàng và s? c?t: "");
+    scanf(""%d %d"", &m, &n);
+    int matrix[100][100];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf(""%d"", &matrix[i][j]);
+        }
+    }
+    for (int j = 0; j < n; j++) {
+        sortColumn(matrix, m, j);
+    }
+    printf(""Ma tr?n sau s?p x?p:\n"");
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            printf(""%d "", matrix[i][j]);
+        }
+        printf(""\n"");
+    }
+    return 0;
+}"										
+167	Tính t?ng t?ng dòng và in k?t qu?.	"#include <stdio.h>
+
+int main() {
+    int m, n;
+    printf(""Nh?p s? hàng và s? c?t: "");
+    scanf(""%d %d"", &m, &n);
+    int matrix[100][100];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf(""%d"", &matrix[i][j]);
+        }
+    }
+    for (int i = 0; i < m; i++) {
+        int sum = 0;
+        for (int j = 0; j < n; j++) {
+            sum += matrix[i][j];
+        }
+        printf(""T?ng dòng %d: %d\n"", i, sum);
+    }
+    return 0;
+}"										
+168	Tính t?ng t?ng c?t và in k?t qu?.	"#include <stdio.h>
+
+int main() {
+    int m, n;
+    printf(""Nh?p s? hàng và s? c?t: "");
+    scanf(""%d %d"", &m, &n);
+    int matrix[100][100];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf(""%d"", &matrix[i][j]);
+        }
+    }
+    for (int j = 0; j < n; j++) {
+        int sum = 0;
+        for (int i = 0; i < m; i++) {
+            sum += matrix[i][j];
+        }
+        printf(""T?ng c?t %d: %d\n"", j, sum);
+    }
+    return 0;
+}"										
+169	Tìm dòng có t?ng l?n nh?t trong ma tr?n.	"#include <stdio.h>
+#include <limits.h>
+
+int main() {
+    int m, n;
+    printf(""Nh?p s? hàng và s? c?t: "");
+    scanf(""%d %d"", &m, &n);
+    int matrix[100][100];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf(""%d"", &matrix[i][j]);
+        }
+    }
+    int maxSum = INT_MIN, maxRow = 0;
+    for (int i = 0; i < m; i++) {
+        int sum = 0;
+        for (int j = 0; j < n; j++) {
+            sum += matrix[i][j];
+        }
+        if (sum > maxSum) {
+            maxSum = sum;
+            maxRow = i;
+        }
+    }
+    printf(""Dòng có t?ng l?n nh?t: %d (T?ng: %d)\n"", maxRow, maxSum);
+    return 0;
+}"										
+170	Tìm ph?n t? l?n nh?t trên t?ng dòng.	"#include <stdio.h>
+#include <limits.h>
+
+int main() {
+    int m, n;
+    printf(""Nh?p s? hàng và s? c?t: "");
+    scanf(""%d %d"", &m, &n);
+    int matrix[100][100];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf(""%d"", &matrix[i][j]);
+        }
+    }
+    for (int i = 0; i < m; i++) {
+        int max = INT_MIN;
+        for (int j = 0; j < n; j++) {
+            if (matrix[i][j] > max) {
+                max = matrix[i][j];
+            }
+        }
+        printf(""Dòng %d: L?n nh?t: %d\n"", i, max);
+    }
+    return 0;
+}"										
+171	Tìm ph?n t? nh? nh?t ? m?i c?t.	"#include <stdio.h>
+#include <limits.h>
+
+int main() {
+    int m, n;
+    printf(""Nh?p s? hàng và s? c?t: "");
+    scanf(""%d %d"", &m, &n);
+    int matrix[100][100];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf(""%d"", &matrix[i][j]);
+        }
+    }
+    for (int j = 0; j < n; j++) {
+        int min = INT_MAX;
+        for (int i = 0; i < m; i++) {
+            if (matrix[i][j] < min) {
+                min = matrix[i][j];
+            }
+        }
+        printf(""C?t %d: Nh? nh?t: %d\n"", j, min);
+    }
+    return 0;
+}"										
+172	Tìm ph?n t? xu?t hi?n nhi?u nh?t trong ma tr?n.	"#include <stdio.h>
+#include <limits.h>
+
+int main() {
+    int m, n;
+    printf(""Nh?p s? hàng và s? c?t: "");
+    scanf(""%d %d"", &m, &n);
+    int matrix[100][100];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf(""%d"", &matrix[i][j]);
+        }
+    }
+    int maxCount = 0, maxElement = matrix[0][0];
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            int count = 0;
+            for (int k = 0; k < m; k++) {
+                for (int l = 0; l < n; l++) {
+                    if (matrix[k][l] == matrix[i][j]) {
+                        count++;
+                    }
+                }
+            }
+            if (count > maxCount) {
+                maxCount = count;
+                maxElement = matrix[i][j];
+            }
+        }
+    }
+    printf(""Ph?n t? xu?t hi?n nhi?u nh?t: %d (S? l?n: %d)\n"", maxElement, maxCount);
+    return 0;
+}"										
+173	Xoay ma tr?n vuông 90 ?? theo chi?u kim ??ng h?.	"#include <stdio.h>
+
+void rotate90Clockwise(int matrix[][100], int n) {
+    for (int i = 0; i < n / 2; i++) {
+        for (int j = i; j < n - i - 1; j++) {
+            int temp = matrix[i][j];
+            matrix[i][j] = matrix[n - 1 - j][i];
+            matrix[n - 1 - j][i] = matrix[n - 1 - i][n - 1 - j];
+            matrix[n - 1 - i][n - 1 - j] = matrix[j][n - 1 - i];
+            matrix[j][n - 1 - i] = temp;
+        }
+    }
+}
+
+int main() {
+    int n;
+    printf(""Nh?p kích th??c ma tr?n vuông: "");
+    scanf(""%d"", &n);
+    int matrix[100][100];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf(""%d"", &matrix[i][j]);
+        }
+    }
+    rotate90Clockwise(matrix, n);
+    printf(""Ma tr?n sau xoay 90 ?? theo chi?u kim ??ng h?:\n"");
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            printf(""%d "", matrix[i][j]);
+        }
+        printf(""\n"");
+    }
+    return 0;
+}"										
+174	Xoay ma tr?n vuông 90 ?? theo chi?u ng??c chi?u kim ??ng h?.	"#include <stdio.h>
+
+void rotate90AntiClockwise(int matrix[][100], int n) {
+    for (int i = 0; i < n / 2; i++) {
+        for (int j = i; j < n - i - 1; j++) {
+            int temp = matrix[i][j];
+            matrix[i][j] = matrix[j][n - 1 - i];
+            matrix[j][n - 1 - i] = matrix[n - 1 - i][n - 1 - j];
+            matrix[n - 1 - i][n - 1 - j] = matrix[n - 1 - j][i];
+            matrix[n - 1 - j][i] = temp;
+        }
+    }
+}
+
+int main() {
+    int n;
+    printf(""Nh?p kích th??c ma tr?n vuông: "");
+    scanf(""%d"", &n);
+    int matrix[100][100];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf(""%d"", &matrix[i][j]);
+        }
+    }
+    rotate90AntiClockwise(matrix, n);
+    printf(""Ma tr?n sau xoay 90 ?? ng??c chi?u kim ??ng h?:\n"");
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            printf(""%d "", matrix[i][j]);
+        }
+        printf(""\n"");
+    }
+    return 0;
+}"										
+175	C?ng hai ma tr?n cùng kích th??c.	"#include <stdio.h>
+
+int main() {
+    int m, n;
+    printf(""Nh?p s? hàng và s? c?t: "");
+    scanf(""%d %d"", &m, &n);
+    int matrix1[100][100], matrix2[100][100], sum[100][100];
+    printf(""Nh?p các ph?n t? ma tr?n 1:\n"");
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf(""%d"", &matrix1[i][j]);
+        }
+    }
+    printf(""Nh?p các ph?n t? ma tr?n 2:\n"");
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf(""%d"", &matrix2[i][j]);
+        }
+    }
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            sum[i][j] = matrix1[i][j] + matrix2[i][j];
+        }
+    }
+    printf(""Ma tr?n t?ng:\n"");
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            printf(""%d "", sum[i][j]);
+        }
+        printf(""\n"");
+    }
+    return 0;
+}"										
+176	Nhân hai ma tr?n kích th?c mxn và nxk.	"#include <stdio.h>
+
+int main() {
+    int m, n, k;
+    printf(""Nh?p kích th??c ma tr?n 1 (m x n): "");
+    scanf(""%d %d"", &m, &n);
+    printf(""Nh?p kích th??c ma tr?n 2 (n x k): "");
+    scanf(""%d"", &k);
+    int matrix1[100][100], matrix2[100][100], product[100][100];
+    printf(""Nh?p các ph?n t? ma tr?n 1:\n"");
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf(""%d"", &matrix1[i][j]);
+        }
+    }
+    printf(""Nh?p các ph?n t? ma tr?n 2:\n"");
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < k; j++) {
+            scanf(""%d"", &matrix2[i][j]);
+        }
+    }
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < k; j++) {
+            product[i][j] = 0;
+            for (int l = 0; l < n; l++) {
+                product[i][j] += matrix1[i][l] * matrix2[l][j];
+            }
+        }
+    }
+    printf(""Ma tr?n tích:\n"");
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < k; j++) {
+            printf(""%d "", product[i][j]);
+        }
+        printf(""\n"");
+    }
+    return 0;
+}"										
+177	Nhân ma tr?n v?i ma tr?n chuy?n v? c?a nó.	"#include <stdio.h>
+
+int main() {
+    int m, n;
+    printf(""Nh?p kích th??c ma tr?n (m x n): "");
+    scanf(""%d %d"", &m, &n);
+    int matrix[100][100], transpose[100][100], product[100][100];
+    printf(""Nh?p các ph?n t? ma tr?n:\n"");
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf(""%d"", &matrix[i][j]);
+            transpose[j][i] = matrix[i][j];
+        }
+    }
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < m; j++) {
+            product[i][j] = 0;
+            for (int k = 0; k < n; k++) {
+                product[i][j] += matrix[i][k] * transpose[k][j];
+            }
+        }
+    }
+    printf(""Ma tr?n tích:\n"");
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < m; j++) {
+            printf(""%d "", product[i][j]);
+        }
+        printf(""\n"");
+    }
+    return 0;
+}"										
+178	Khai báo m?t con tr? tr? ??n m?t bi?n s? nguyên. In ??a ch? và giá tr? thông qua con tr?.	"#include <stdio.h>
+
+int main() {
+    int num = 10;
+    int *ptr = &num;
+    printf(""??a ch? c?a num: %p\n"", &num);
+    printf(""Giá tr? c?a num thông qua con tr?: %d\n"", *ptr);
+    return 0;
+}"										
+179	Vi?t hàm hoán ??i (swap) hai s? nguyên dùng con tr?.	"#include <stdio.h>
+
+void swap(int *a, int *b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+int main() {
+    int a, b;
+    printf(""Nh?p hai s?: "");
+    scanf(""%d %d"", &a, &b);
+    swap(&a, &b);
+    printf(""Sau hoán ??i: a = %d, b = %d\n"", a, b);
+    return 0;
+}"										
+180	Tính t?ng 2 s? nguyên b?ng con tr? (truy?n ??a ch? vào hàm).	"#include <stdio.h>
+
+int sum(int *a, int *b) {
+    return *a + *b;
+}
+
+int main() {
+    int a, b;
+    printf(""Nh?p hai s?: "");
+    scanf(""%d %d"", &a, &b);
+    printf(""T?ng: %d\n"", sum(&a, &b));
+    return 0;
+}"										
+181	Nh?p và in ra m?ng s? nguyên s? d?ng con tr? thay vì ch? s? m?ng.	"#include <stdio.h>
+
+int main() {
+    int n;
+    printf(""Nh?p s? ph?n t?: "");
+    scanf(""%d"", &n);
+    int arr[n];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < n; i++) {
+        scanf(""%d"", arr + i);
+    }
+    printf(""M?ng: "");
+    for (int i = 0; i < n; i++) {
+        printf(""%d "", *(arr + i));
+    }
+    printf(""\n"");
+    return 0;
+}"										
+182	Tìm giá tr? l?n nh?t trong m?ng dùng con tr?.	"#include <stdio.h>
+#include <limits.h>
+
+int findMax(int *arr, int n) {
+    int max = INT_MIN;
+    for (int i = 0; i < n; i++) {
+        if (*(arr + i) > max) {
+            max = *(arr + i);
+        }
+    }
+    return max;
+}
+
+int main() {
+    int n;
+    printf(""Nh?p s? ph?n t?: "");
+    scanf(""%d"", &n);
+    int arr[n];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < n; i++) {
+        scanf(""%d"", arr + i);
+    }
+    printf(""Giá tr? l?n nh?t: %d\n"", findMax(arr, n));
+    return 0;
+}"										
+183	??m s? ph?n t? ch?n trong m?ng dùng con tr?.	"#include <stdio.h>
+
+int countEven(int *arr, int n) {
+    int count = 0;
+    for (int i = 0; i < n; i++) {
+        if (*(arr + i) % 2 == 0) {
+            count++;
+        }
+    }
+    return count;
+}
+
+int main() {
+    int n;
+    printf(""Nh?p s? ph?n t?: "");
+    scanf(""%d"", &n);
+    int arr[n];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < n; i++) {
+        scanf(""%d"", arr + i);
+    }
+    printf(""S? ph?n t? ch?n: %d\n"", countEven(arr, n));
+    return 0;
+}"										
+184	??m s? ph?n t? l? trong m?ng dùng con tr?.	"#include <stdio.h>
+
+int countOdd(int *arr, int n) {
+    int count = 0;
+    for (int i = 0; i < n; i++) {
+        if (*(arr + i) % 2 != 0) {
+            count++;
+        }
+    }
+    return count;
+}
+
+int main() {
+    int n;
+    printf(""Nh?p s? ph?n t?: "");
+    scanf(""%d"", &n);
+    int arr[n];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < n; i++) {
+        scanf(""%d"", arr + i);
+    }
+    printf(""S? ph?n t? l?: %d\n"", countOdd(arr, n));
+    return 0;
+}"										
+185	S?p x?p m?ng t?ng d?n s? d?ng con tr? (bubble sort ho?c selection sort).	"#include <stdio.h>
+
+void bubbleSort(int *arr, int n) {
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (*(arr + j) > *(arr + j + 1)) {
+                int temp = *(arr + j);
+                *(arr + j) = *(arr + j + 1);
+                *(arr + j + 1) = temp;
+            }
+        }
+    }
+}
+
+int main() {
+    int n;
+    printf(""Nh?p s? ph?n t?: "");
+    scanf(""%d"", &n);
+    int arr[n];
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < n; i++) {
+        scanf(""%d"", arr + i);
+    }
+    bubbleSort(arr, n);
+    printf(""M?ng sau s?p x?p: "");
+    for (int i = 0; i < n; i++) {
+        printf(""%d "", *(arr + i));
+    }
+    printf(""\n"");
+    return 0;
+}"										
+186	"Tính ?? dài chu?i (string) mà không dùng strlen(), ch? dùng con tr?."	"#include <stdio.h>
+
+int stringLength(char *str) {
+    int length = 0;
+    while (*str != '\0') {
+        length++;
+        str++;
+    }
+    return length;
+}
+
+int main() {
+    char str[100];
+    printf(""Nh?p chu?i: "");
+    scanf(""%s"", str);
+    printf(""?? dài chu?i: %d\n"", stringLength(str));
+    return 0;
+}"										
+187	??o ng??c chu?i ký t? b?ng con tr?.	"#include <stdio.h>
+
+void reverseString(char *str) {
+    int length = 0;
+    while (*(str + length) != '\0') {
+        length++;
+    }
+    for (int i = 0; i < length / 2; i++) {
+        char temp = *(str + i);
+        *(str + i) = *(str + length - 1 - i);
+        *(str + length - 1 - i) = temp;
+    }
+}
+
+int main() {
+    char str[100];
+    printf(""Nh?p chu?i: "");
+    scanf(""%s"", str);
+    reverseString(str);
+    printf(""Chu?i ??o ng??c: %s\n"", str);
+    return 0;
+}"										
+188	"C?p phát ??ng m?ng (s? d?ng malloc), nh?p và tính t?ng các ph?n t?."	"#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int n;
+    printf(""Nh?p s? ph?n t?: "");
+    scanf(""%d"", &n);
+    int *arr = (int *)malloc(n * sizeof(int));
+    if (arr == NULL) {
+        printf(""Không ?? b? nh?.\n"");
+        return 1;
+    }
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < n; i++) {
+        scanf(""%d"", arr + i);
+    }
+    int sum = 0;
+    for (int i = 0; i < n; i++) {
+        sum += *(arr + i);
+    }
+    printf(""T?ng: %d\n"", sum);
+    free(arr);
+    return 0;
+}"										
+189	"C?p phát b? nh? ??ng cho m?t m?ng s? nguyên, nh?p giá tr? và in ra m?ng."	"#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int n;
+    printf(""Nh?p s? ph?n t?: "");
+    scanf(""%d"", &n);
+    int *arr = (int *)malloc(n * sizeof(int));
+    if (arr == NULL) {
+        printf(""Không ?? b? nh?.\n"");
+        return 1;
+    }
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < n; i++) {
+        scanf(""%d"", arr + i);
+    }
+    printf(""M?ng: "");
+    for (int i = 0; i < n; i++) {
+        printf(""%d "", *(arr + i));
+    }
+    printf(""\n"");
+    free(arr);
+    return 0;
+}"										
+190	"S? d?ng malloc ?? c?p phát b? nh? cho m?ng, nh?p và tính t?ng các ph?n t? d??ng c?a m?ng."	"#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int n;
+    printf(""Nh?p s? ph?n t?: "");
+    scanf(""%d"", &n);
+    int *arr = (int *)malloc(n * sizeof(int));
+    if (arr == NULL) {
+        printf(""Không ?? b? nh?.\n"");
+        return 1;
+    }
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < n; i++) {
+        scanf(""%d"", arr + i);
+    }
+    int sum = 0;
+    for (int i = 0; i < n; i++) {
+        if (*(arr + i) > 0) {
+            sum += *(arr + i);
+        }
+    }
+    printf(""T?ng các ph?n t? d??ng: %d\n"", sum);
+    free(arr);
+    return 0;
+}"										
+191	"C?p phát b? nh? cho m?t m?ng s? th?c (float), nh?p giá tr? và tính t?ng các ph?n t?."	"#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int n;
+    printf(""Nh?p s? ph?n t?: "");
+    scanf(""%d"", &n);
+    float *arr = (float *)malloc(n * sizeof(float));
+    if (arr == NULL) {
+        printf(""Không ?? b? nh?.\n"");
+        return 1;
+    }
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < n; i++) {
+        scanf(""%f"", arr + i);
+    }
+    float sum = 0;
+    for (int i = 0; i < n; i++) {
+        sum += *(arr + i);
+    }
+    printf(""T?ng: %.2f\n"", sum);
+    free(arr);
+    return 0;
+}"										
+192	S? d?ng malloc và tính t?ng m?ng s? th?c.	"#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int n;
+    printf(""Nh?p s? ph?n t?: "");
+    scanf(""%d"", &n);
+    float *arr = (float *)malloc(n * sizeof(float));
+    if (arr == NULL) {
+        printf(""Không ?? b? nh?.\n"");
+        return 1;
+    }
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < n; i++) {
+        scanf(""%f"", arr + i);
+    }
+    float sum = 0;
+    for (int i = 0; i < n; i++) {
+        sum += *(arr + i);
+    }
+    printf(""T?ng: %.2f\n"", sum);
+    free(arr);
+    return 0;
+}"										
+193	"C?p phát b? nh? cho m?t chu?i ký t? (string), nh?p giá tr? và in ra chu?i."	"#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int n;
+    printf(""Nh?p ?? dài chu?i: "");
+    scanf(""%d"", &n);
+    char *str = (char *)malloc((n + 1) * sizeof(char));
+    if (str == NULL) {
+        printf(""Không ?? b? nh?.\n"");
+        return 1;
+    }
+    printf(""Nh?p chu?i: "");
+    scanf(""%s"", str);
+    printf(""Chu?i: %s\n"", str);
+    free(str);
+    return 0;
+}"										
+194	"S? d?ng malloc ?? c?p phát b? nh? cho chu?i, nh?p và in ra m?ng ?ó v?i các ký t? chuy?n thành in hoa."	"#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+
+int main() {
+    int n;
+    printf(""Nh?p ?? dài chu?i: "");
+    scanf(""%d"", &n);
+    char *str = (char *)malloc((n + 1) * sizeof(char));
+    if (str == NULL) {
+        printf(""Không ?? b? nh?.\n"");
+        return 1;
+    }
+    printf(""Nh?p chu?i: "");
+    scanf(""%s"", str);
+    for (int i = 0; str[i] != '\0'; i++) {
+        str[i] = toupper(str[i]);
+    }
+    printf(""Chu?i in hoa: %s\n"", str);
+    free(str);
+    return 0;
+}"										
+195	"C?p phát b? nh? ??ng cho m?t ma tr?n (m?ng 2 chi?u) v?i kích th??c m x n, nh?p giá tr? và in ma tr?n."	"#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int m, n;
+    printf(""Nh?p s? hàng và s? c?t: "");
+    scanf(""%d %d"", &m, &n);
+    int **matrix = (int **)malloc(m * sizeof(int *));
+    if (matrix == NULL) {
+        printf(""Không ?? b? nh?.\n"");
+        return 1;
+    }
+    for (int i = 0; i < m; i++) {
+        matrix[i] = (int *)malloc(n * sizeof(int));
+        if (matrix[i] == NULL) {
+            printf(""Không ?? b? nh?.\n"");
+            return 1;
+        }
+    }
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf(""%d"", &matrix[i][j]);
+        }
+    }
+    printf(""Ma tr?n:\n"");
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            printf(""%d "", matrix[i][j]);
+        }
+        printf(""\n"");
+    }
+    for (int i = 0; i < m; i++) {
+        free(matrix[i]);
+    }
+    free(matrix);
+    return 0;
+}"										
+196	"S? d?ng malloc ?? c?p phát b? nh? cho ma tr?n ??ng, nh?p giá tr? và in ma tr?n."	"#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int m, n;
+    printf(""Nh?p s? hàng và s? c?t: "");
+    scanf(""%d %d"", &m, &n);
+    int **matrix = (int **)malloc(m * sizeof(int *));
+    if (matrix == NULL) {
+        printf(""Không ?? b? nh?.\n"");
+        return 1;
+    }
+    for (int i = 0; i < m; i++) {
+        matrix[i] = (int *)malloc(n * sizeof(int));
+        if (matrix[i] == NULL) {
+            printf(""Không ?? b? nh?.\n"");
+            return 1;
+        }
+    }
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf(""%d"", &matrix[i][j]);
+        }
+    }
+    printf(""Ma tr?n:\n"");
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            printf(""%d "", matrix[i][j]);
+        }
+        printf(""\n"");
+    }
+    for (int i = 0; i < m; i++) {
+        free(matrix[i]);
+    }
+    free(matrix);
+    return 0;
+}"										
+197	C?p phát b? nh? ??ng cho m?ng s? nguyên và s?p x?p m?ng theo th? t? t?ng d?n.	"#include <stdio.h>
+#include <stdlib.h>
+
+void sortArray(int *arr, int n) {
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (*(arr + j) > *(arr + j + 1)) {
+                int temp = *(arr + j);
+                *(arr + j) = *(arr + j + 1);
+                *(arr + j + 1) = temp;
+            }
+        }
+    }
+}
+
+int main() {
+    int n;
+    printf(""Nh?p s? ph?n t?: "");
+    scanf(""%d"", &n);
+    int *arr = (int *)malloc(n * sizeof(int));
+    if (arr == NULL) {
+        printf(""Không ?? b? nh?.\n"");
+        return 1;
+    }
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < n; i++) {
+        scanf(""%d"", arr + i);
+    }
+    sortArray(arr, n);
+    printf(""M?ng sau s?p x?p: "");
+    for (int i = 0; i < n; i++) {
+        printf(""%d "", *(arr + i));
+    }
+    printf(""\n"");
+    free(arr);
+    return 0;
+}"										
+198	"C?p phát b? nh?, sau ?ó s?p x?p m?ng s? nguyên b?ng cách s? d?ng thu?t toán s?p x?p."	"#include <stdio.h>
+#include <stdlib.h>
+
+void sortArray(int *arr, int n) {
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (*(arr + j) > *(arr + j + 1)) {
+                int temp = *(arr + j);
+                *(arr + j) = *(arr + j + 1);
+                *(arr + j + 1) = temp;
+            }
+        }
+    }
+}
+
+int main() {
+    int n;
+    printf(""Nh?p s? ph?n t?: "");
+    scanf(""%d"", &n);
+    int *arr = (int *)malloc(n * sizeof(int));
+    if (arr == NULL) {
+        printf(""Không ?? b? nh?.\n"");
+        return 1;
+    }
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < n; i++) {
+        scanf(""%d"", arr + i);
+    }
+    sortArray(arr, n);
+    printf(""M?ng sau s?p x?p: "");
+    for (int i = 0; i < n; i++) {
+        printf(""%d "", *(arr + i));
+    }
+    printf(""\n"");
+    free(arr);
+    return 0;
+}"										
+199	"C?p phát b? nh? ??ng cho m?t ma tr?n vuông, nh?p giá tr?, tính t?ng các ph?n t? trên ???ng chéo chính."	"#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int n;
+    printf(""Nh?p kích th??c ma tr?n vuông: "");
+    scanf(""%d"", &n);
+    int **matrix = (int **)malloc(n * sizeof(int *));
+    if (matrix == NULL) {
+        printf(""Không ?? b? nh?.\n"");
+        return 1;
+    }
+    for (int i = 0; i < n; i++) {
+        matrix[i] = (int *)malloc(n * sizeof(int));
+        if (matrix[i] == NULL) {
+            printf(""Không ?? b? nh?.\n"");
+            return 1;
+        }
+    }
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf(""%d"", &matrix[i][j]);
+        }
+    }
+    int sum = 0;
+    for (int i = 0; i < n; i++) {
+        sum += matrix[i][i];
+    }
+    printf(""T?ng ???ng chéo chính: %d\n"", sum);
+    for (int i = 0; i < n; i++) {
+        free(matrix[i]);
+    }
+    free(matrix);
+    return 0;
+}"										
+200	S? d?ng malloc ?? c?p phát ma tr?n và tính t?ng các ph?n t? ???ng chéo chính.	"#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int n;
+    printf(""Nh?p kích th??c ma tr?n vuông: "");
+    scanf(""%d"", &n);
+    int **matrix = (int **)malloc(n * sizeof(int *));
+    if (matrix == NULL) {
+        printf(""Không ?? b? nh?.\n"");
+        return 1;
+    }
+    for (int i = 0; i < n; i++) {
+        matrix[i] = (int *)malloc(n * sizeof(int));
+        if (matrix[i] == NULL) {
+            printf(""Không ?? b? nh?.\n"");
+            return 1;
+        }
+    }
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf(""%d"", &matrix[i][j]);
+        }
+    }
+    int sum = 0;
+    for (int i = 0; i < n; i++) {
+        sum += matrix[i][i];
+    }
+    printf(""T?ng ???ng chéo chính: %d\n"", sum);
+    for (int i = 0; i < n; i++) {
+        free(matrix[i]);
+    }
+    free(matrix);
+    return 0;
+}"										
+201	"S? d?ng realloc ?? thay ??i kích th??c m?ng ??ng (m? r?ng m?ng), nh?p các giá tr? cho các ph?n t? m? r?ng."	"#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int n, newSize;
+    printf(""Nh?p s? ph?n t? ban ??u: "");
+    scanf(""%d"", &n);
+    int *arr = (int *)malloc(n * sizeof(int));
+    if (arr == NULL) {
+        printf(""Không ?? b? nh?.\n"");
+        return 1;
+    }
+    printf(""Nh?p các ph?n t? ban ??u:\n"");
+    for (int i = 0; i < n; i++) {
+        scanf(""%d"", arr + i);
+    }
+    printf(""Nh?p kích th??c m?i: "");
+    scanf(""%d"", &newSize);
+    arr = (int *)realloc(arr, newSize * sizeof(int));
+    if (arr == NULL) {
+        printf(""Không ?? b? nh?.\n"");
+        return 1;
+    }
+    printf(""Nh?p các ph?n t? m? r?ng:\n"");
+    for (int i = n; i < newSize; i++) {
+        scanf(""%d"", arr + i);
+    }
+    printf(""M?ng sau m? r?ng: "");
+    for (int i = 0; i < newSize; i++) {
+        printf(""%d "", *(arr + i));
+    }
+    printf(""\n"");
+    free(arr);
+    return 0;
+}"										
+202	"Kh?i t?o m?t m?ng v?i m?t s? ph?n t?, sau ?ó m? r?ng m?ng và nh?p thêm giá tr?."	"#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int n, newSize;
+    printf(""Nh?p s? ph?n t? ban ??u: "");
+    scanf(""%d"", &n);
+    int *arr = (int *)malloc(n * sizeof(int));
+    if (arr == NULL) {
+        printf(""Không ?? b? nh?.\n"");
+        return 1;
+    }
+    printf(""Nh?p các ph?n t? ban ??u:\n"");
+    for (int i = 0; i < n; i++) {
+        scanf(""%d"", arr + i);
+    }
+    printf(""Nh?p kích th??c m?i: "");
+    scanf(""%d"", &newSize);
+    arr = (int *)realloc(arr, newSize * sizeof(int));
+    if (arr == NULL) {
+        printf(""Không ?? b? nh?.\n"");
+        return 1;
+    }
+    printf(""Nh?p các ph?n t? m? r?ng:\n"");
+    for (int i = n; i < newSize; i++) {
+        scanf(""%d"", arr + i);
+    }
+    printf(""M?ng sau m? r?ng: "");
+    for (int i = 0; i < newSize; i++) {
+        printf(""%d "", *(arr + i));
+    }
+    printf(""\n"");
+    free(arr);
+    return 0;
+}"										
+203	C?p phát b? nh? ??ng cho m?ng và tìm ki?m ph?n t? trong m?ng.	"#include <stdio.h>
+#include <stdlib.h>
+
+int search(int *arr, int n, int x) {
+    for (int i = 0; i < n; i++) {
+        if (*(arr + i) == x) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+int main() {
+    int n, x;
+    printf(""Nh?p s? ph?n t?: "");
+    scanf(""%d"", &n);
+    int *arr = (int *)malloc(n * sizeof(int));
+    if (arr == NULL) {
+        printf(""Không ?? b? nh?.\n"");
+        return 1;
+    }
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < n; i++) {
+        scanf(""%d"", arr + i);
+    }
+    printf(""Nh?p giá tr? c?n tìm: "");
+    scanf(""%d"", &x);
+    int index = search(arr, n, x);
+    printf(index != -1 ? ""Tìm th?y t?i v? trí %d\n"" : ""Không tìm th?y.\n"", index);
+    free(arr);
+    return 0;
+}"										
+204	"C?p phát b? nh? ??ng cho m?ng, sau ?ó tìm ki?m m?t ph?n t? b?t k? trong m?ng b?ng cách s? d?ng m?t hàm tìm ki?m."	"#include <stdio.h>
+#include <stdlib.h>
+
+int search(int *arr, int n, int x) {
+    for (int i = 0; i < n; i++) {
+        if (*(arr + i) == x) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+int main() {
+    int n, x;
+    printf(""Nh?p s? ph?n t?: "");
+    scanf(""%d"", &n);
+    int *arr = (int *)malloc(n * sizeof(int));
+    if (arr == NULL) {
+        printf(""Không ?? b? nh?.\n"");
+        return 1;
+    }
+    printf(""Nh?p các ph?n t?:\n"");
+    for (int i = 0; i < n; i++) {
+        scanf(""%d"", arr + i);
+    }
+    printf(""Nh?p giá tr? c?n tìm: "");
+    scanf(""%d"", &x);
+    int index = search(arr, n, x);
+    printf(index != -1 ? ""Tìm th?y t?i v? trí %d\n"" : ""Không tìm th?y.\n"", index);
+    free(arr);
+    return 0;
+}"										
+205	"??nh ngh?a m?t c?u trúc SinhVien v?i các thành ph?n: mã sinh viên, tên, ?i?m thi. Nh?p và in ra thông tin c?a m?t sinh viên."	"#include <stdio.h>
+
+typedef struct {
+    char maSV[10];
+    char ten[50];
+    float diem;
+} SinhVien;
+
+int main() {
+    SinhVien sv;
+    printf(""Nh?p mã sinh viên: "");
+    scanf(""%s"", sv.maSV);
+    printf(""Nh?p tên sinh viên: "");
+    scanf("" %[^\n]s"", sv.ten);
+    printf(""Nh?p ?i?m thi: "");
+    scanf(""%f"", &sv.diem);
+    printf(""Thông tin sinh viên:\n"");
+    printf(""Mã SV: %s\nTên: %s\n?i?m: %.2f\n"", sv.maSV, sv.ten, sv.diem);
+    return 0;
+}"										
+206	"??nh ngh?a c?u trúc HinhChuNhat v?i chi?u dài và chi?u r?ng. Nh?p giá tr? chi?u dài và chi?u r?ng, tính di?n tích và in k?t qu?."	"#include <stdio.h>
+
+typedef struct {
+    float dai;
+    float rong;
+} HinhChuNhat;
+
+float tinhDienTich(HinhChuNhat hcn) {
+    return hcn.dai * hcn.rong;
+}
+
+int main() {
+    HinhChuNhat hcn;
+    printf(""Nh?p chi?u dài: "");
+    scanf(""%f"", &hcn.dai);
+    printf(""Nh?p chi?u r?ng: "");
+    scanf(""%f"", &hcn.rong);
+    printf(""Di?n tích: %.2f\n"", tinhDienTich(hcn));
+    return 0;
+}"										
+207	??nh ngh?a c?u trúc Date (ngày tháng n?m). Nh?p và in ra ngày tháng n?m.	"#include <stdio.h>
+
+typedef struct {
+    int ngay;
+    int thang;
+    int nam;
+} Date;
+
+int main() {
+    Date date;
+    printf(""Nh?p ngày: "");
+    scanf(""%d"", &date.ngay);
+    printf(""Nh?p tháng: "");
+    scanf(""%d"", &date.thang);
+    printf(""Nh?p n?m: "");
+    scanf(""%d"", &date.nam);
+    printf(""Ngày: %02d/%02d/%04d\n"", date.ngay, date.thang, date.nam);
+    return 0;
+}"										
+208	??nh ngh?a c?u trúc DiemThi v?i các thành ph?n: môn thi và ?i?m thi. Nh?p và in ra danh sách ?i?m thi c?a m?t sinh viên (g?m các môn khác nhau).	"#include <stdio.h>
+
+typedef struct {
+    char monThi[20];
+    float diem;
+} DiemThi;
+
+int main() {
+    int n;
+    printf(""Nh?p s? môn h?c: "");
+    scanf(""%d"", &n);
+    DiemThi dsDiem[n];
+    for (int i = 0; i < n; i++) {
+        printf(""Nh?p tên môn th? %d: "", i + 1);
+        scanf("" %[^\n]s"", dsDiem[i].monThi);
+        printf(""Nh?p ?i?m: "");
+        scanf(""%f"", &dsDiem[i].diem);
+    }
+    printf(""Danh sách ?i?m:\n"");
+    for (int i = 0; i < n; i++) {
+        printf(""%s: %.2f\n"", dsDiem[i].monThi, dsDiem[i].diem);
+    }
+    return 0;
+}"										
+209	"??nh ngh?a c?u trúc SanPham v?i các thành ph?n: mã s?n ph?m, tên s?n ph?m, giá ti?n. Nh?p và in ra thông tin c?a m?t s?n ph?m."	"#include <stdio.h>
+
+typedef struct {
+    char maSP[10];
+    char tenSP[50];
+    float gia;
+} SanPham;
+
+int main() {
+    SanPham sp;
+    printf(""Nh?p mã s?n ph?m: "");
+    scanf(""%s"", sp.maSP);
+    printf(""Nh?p tên s?n ph?m: "");
+    scanf("" %[^\n]s"", sp.tenSP);
+    printf(""Nh?p giá ti?n: "");
+    scanf(""%f"", &sp.gia);
+    printf(""Thông tin s?n ph?m:\n"");
+    printf(""Mã SP: %s\nTên SP: %s\nGiá: %.2f\n"", sp.maSP, sp.tenSP, sp.gia);
+    return 0;
+}"										
+210	??nh ngh?a c?u trúc TamGiac v?i ba c?nh c?a tam giác. Ki?m tra n?u ba c?nh t?o thành m?t tam giác h?p l?.	"#include <stdio.h>
+
+typedef struct {
+    float a;
+    float b;
+    float c;
+} TamGiac;
+
+int isValidTriangle(TamGiac tg) {
+    return tg.a + tg.b > tg.c && tg.a + tg.c > tg.b && tg.b + tg.c > tg.a;
+}
+
+int main() {
+    TamGiac tg;
+    printf(""Nh?p ?? dài 3 c?nh: "");
+    scanf(""%f %f %f"", &tg.a, &tg.b, &tg.c);
+    printf(isValidTriangle(tg) ? ""Là tam giác h?p l?.\n"" : ""Không ph?i tam giác h?p l?.\n"");
+    return 0;
+}"										
+211	"S? d?ng c?u trúc HocSinh v?i các thông tin: h? tên, l?p, ?i?m trung bình. Nh?p và in ra thông tin c?a m?t h?c sinh."	"#include <stdio.h>
+
+typedef struct {
+    char hoTen[50];
+    char lop[10];
+    float diemTB;
+} HocSinh;
+
+int main() {
+    HocSinh hs;
+    printf(""Nh?p h? tên: "");
+    scanf("" %[^\n]s"", hs.hoTen);
+    printf(""Nh?p l?p: "");
+    scanf(""%s"", hs.lop);
+    printf(""Nh?p ?i?m trung bình: "");
+    scanf(""%f"", &hs.diemTB);
+    printf(""Thông tin h?c sinh:\n"");
+    printf(""H? tên: %s\nL?p: %s\n?i?m TB: %.2f\n"", hs.hoTen, hs.lop, hs.diemTB);
+    return 0;
+}"										
+212	S? d?ng c?u trúc SoPhuc v?i ph?n th?c và ph?n ?o c?a m?t s? ph?c. Nh?p và in ra s? ph?c.	"#include <stdio.h>
+
+typedef struct {
+    float thuc;
+    float ao;
+} SoPhuc;
+
+int main() {
+    SoPhuc sp;
+    printf(""Nh?p ph?n th?c: "");
+    scanf(""%f"", &sp.thuc);
+    printf(""Nh?p ph?n ?o: "");
+    scanf(""%f"", &sp.ao);
+    printf(""S? ph?c: %.2f + %.2fi\n"", sp.thuc, sp.ao);
+    return 0;
+}"										
+213	"??nh ngh?a c?u trúc NhanVien v?i các thành ph?n: tên, tu?i, l??ng. Nh?p và in ra thông tin c?a nhân viên."	"#include <stdio.h>
+
+typedef struct {
+    char ten[50];
+    int tuoi;
+    float luong;
+} NhanVien;
+
+int main() {
+    NhanVien nv;
+    printf(""Nh?p tên nhân viên: "");
+    scanf("" %[^\n]s"", nv.ten);
+    printf(""Nh?p tu?i: "");
+    scanf(""%d"", &nv.tuoi);
+    printf(""Nh?p l??ng: "");
+    scanf(""%f"", &nv.luong);
+    printf(""Thông tin nhân viên:\n"");
+    printf(""Tên: %s\nTu?i: %d\nL??ng: %.2f\n"", nv.ten, nv.tuoi, nv.luong);
+    return 0;
+}"										
+214	??nh ngh?a c?u trúc Point v?i hai t?a ?? x và y. Nh?p và in ra t?a ?? c?a ?i?m.	"#include <stdio.h>
+
+typedef struct {
+    float x;
+    float y;
+} Point;
+
+int main() {
+    Point p;
+    printf(""Nh?p t?a ?? x: "");
+    scanf(""%f"", &p.x);
+    printf(""Nh?p t?a ?? y: "");
+    scanf(""%f"", &p.y);
+    printf(""T?a ??: (%.2f, %.2f)\n"", p.x, p.y);
+    return 0;
+}"										
+215	"??nh ngh?a c?u trúc Point3D v?i hai t?a ?? x, y và z. Nh?p và in ra t?a ?? c?a ?i?m"	"#include <stdio.h>
+
+typedef struct {
+    float x;
+    float y;
+    float z;
+} Point3D;
+
+int main() {
+    Point3D p;
+    printf(""Nh?p t?a ?? x: "");
+    scanf(""%f"", &p.x);
+    printf(""Nh?p t?a ?? y: "");
+    scanf(""%f"", &p.y);
+    printf(""Nh?p t?a ?? z: "");
+    scanf(""%f"", &p.z);
+    printf(""T?a ??: (%.2f, %.2f, %.2f)\n"", p.x, p.y, p.z);
+    return 0;
+}"										
+216	"S? d?ng c?u trúc MatHang v?i các thành ph?n: tên s?n ph?m, giá, s? l??ng. Tính t?ng giá tr? c?a t?t c? các m?t hàng trong c?a hàng."	"#include <stdio.h>
+
+typedef struct {
+    char tenSP[50];
+    float gia;
+    int soLuong;
+} MatHang;
+
+float tinhTongGiaTri(MatHang mh) {
+    return mh.gia * mh.soLuong;
+}
+
+int main() {
+    MatHang mh;
+    printf(""Nh?p tên s?n ph?m: "");
+    scanf("" %[^\n]s"", mh.tenSP);
+    printf(""Nh?p giá: "");
+    scanf(""%f"", &mh.gia);
+    printf(""Nh?p s? l??ng: "");
+    scanf(""%d"", &mh.soLuong);
+    printf(""T?ng giá tr?: %.2f\n"", tinhTongGiaTri(mh));
+    return 0;
+}"										
+217	"??nh ngh?a c?u trúc Car v?i các thành ph?n: tên xe, n?m s?n xu?t, giá. Nh?p và in ra thông tin c?a m?t chi?c xe."	"#include <stdio.h>
+
+typedef struct {
+    char tenXe[50];
+    int namSX;
+    float gia;
+} Car;
+
+int main() {
+    Car car;
+    printf(""Nh?p tên xe: "");
+    scanf("" %[^\n]s"", car.tenXe);
+    printf(""Nh?p n?m s?n xu?t: "");
+    scanf(""%d"", &car.namSX);
+    printf(""Nh?p giá: "");
+    scanf(""%f"", &car.gia);
+    printf(""Thông tin xe:\n"");
+    printf(""Tên xe: %s\nN?m SX: %d\nGiá: %.2f\n"", car.tenXe, car.namSX, car.gia);
+    return 0;
+}"										
+218	"??nh ngh?a c?u trúc HinhThang v?i ?áy l?n, ?áy nh? và chi?u cao c?a hình thang. Tính di?n tích và chu vi c?a hình thang."	"#include <stdio.h>
+#include <math.h>
+
+typedef struct {
+    float dayLon;
+    float dayNho;
+    float chieuCao;
+} HinhThang;
+
+float tinhDienTich(HinhThang ht) {
+    return (ht.dayLon + ht.dayNho) * ht.chieuCao / 2;
+}
+
+float tinhChuVi(HinhThang ht) {
+    float canhBen = sqrt(pow((ht.dayLon - ht.dayNho) / 2, 2) + pow(ht.chieuCao, 2));
+    return ht.dayLon + ht.dayNho + 2 * canhBen;
+}
+
+int main() {
+    HinhThang ht;
+    printf(""Nh?p ?áy l?n: "");
+    scanf(""%f"", &ht.dayLon);
+    printf(""Nh?p ?áy nh?: "");
+    scanf(""%f"", &ht.dayNho);
+    printf(""Nh?p chi?u cao: "");
+    scanf(""%f"", &ht.chieuCao);
+    printf(""Di?n tích: %.2f\n"", tinhDienTich(ht));
+    printf(""Chu vi: %.2f\n"", tinhChuVi(ht));
+    return 0;
+}"										
+219	"S? d?ng c?u trúc Ellipe v?i bán kính l?n, bán kính nh? c?a hình elip. Tính di?n tích c?a hình elip."	"#include <stdio.h>
+#define PI 3.14159
+
+typedef struct {
+    float banKinhLon;
+    float banKinhNho;
+} Ellipse;
+
+float tinhDienTich(Ellipse el) {
+    return PI * el.banKinhLon * el.banKinhNho;
+}
+
+int main() {
+    Ellipse el;
+    printf(""Nh?p bán kính l?n: "");
+    scanf(""%f"", &el.banKinhLon);
+    printf(""Nh?p bán kính nh?: "");
+    scanf(""%f"", &el.banKinhNho);
+    printf(""Di?n tích: %.2f\n"", tinhDienTich(el));
+    return 0;
+}"										
+220	"S? d?ng c?u trúc SinhVien, l?p m?t danh sách sinh viên là m?t m?ng các b?n ghi (struct) sinh viên. Nh?p thông tin c?a m?t s? sinh viên và in ra thông tin c?a các sinh viên ?ó."	"#include <stdio.h>
+
+typedef struct {
+    char maSV[10];
+    char ten[50];
+    float diem;
+} SinhVien;
+
+int main() {
+    int n;
+    printf(""Nh?p s? sinh viên: "");
+    scanf(""%d"", &n);
+    SinhVien dsSV[n];
+    for (int i = 0; i < n; i++) {
+        printf(""Nh?p mã SV th? %d: "", i + 1);
+        scanf(""%s"", dsSV[i].maSV);
+        printf(""Nh?p tên SV th? %d: "", i + 1);
+        scanf("" %[^\n]s"", dsSV[i].ten);
+        printf(""Nh?p ?i?m SV th? %d: "", i + 1);
+        scanf(""%f"", &dsSV[i].diem);
+    }
+    printf(""Danh sách sinh viên:\n"");
+    for (int i = 0; i < n; i++) {
+        printf(""Mã SV: %s, Tên: %s, ?i?m: %.2f\n"", dsSV[i].maSV, dsSV[i].ten, dsSV[i].diem);
+    }
+    return 0;
+}"										
+221	"S? d?ng c?u trúc SinhVien, l?p m?t danh sách sinh viên là m?t m?ng các b?n ghi (struct) sinh viên. Nh?p thông tin c?a m?t s? sinh viên và tính ?i?m trung bình c?a các sinh viên ?ó."	"#include <stdio.h>
+
+typedef struct {
+    char maSV[10];
+    char ten[50];
+    float diem;
+} SinhVien;
+
+float tinhDiemTB(SinhVien dsSV[], int n) {
+    float sum = 0;
+    for (int i = 0; i < n; i++) {
+        sum += dsSV[i].diem;
+    }
+    return sum / n;
+}
+
+int main() {
+    int n;
+    printf(""Nh?p s? sinh viên: "");
+    scanf(""%d"", &n);
+    SinhVien dsSV[n];
+    for (int i = 0; i < n; i++) {
+        printf(""Nh?p mã SV th? %d: "", i + 1);
+        scanf(""%s"", dsSV[i].maSV);
+        printf(""Nh?p tên SV th? %d: "", i + 1);
+        scanf("" %[^\n]s"", dsSV[i].ten);
+        printf(""Nh?p ?i?m SV th? %d: "", i + 1);
+        scanf(""%f"", &dsSV[i].diem);
+    }
+    printf(""?i?m trung bình: %.2f\n"", tinhDiemTB(dsSV, n));
+    return 0;
+}"										
+222	"??nh ngh?a c?u trúc HocKy v?i các thành ph?n: tên h?c k?, ?i?m trung bình các môn h?c. In ra h?c k? có ?i?m trung bình cao nh?t."	"#include <stdio.h>
+
+typedef struct {
+    char tenHK[20];
+    float diemTB;
+} HocKy;
+
+int main() {
+    int n;
+    printf(""Nh?p s? h?c k?: "");
+    scanf(""%d"", &n);
+    HocKy dsHK[n];
+    for (int i = 0; i < n; i++) {
+        printf(""Nh?p tên h?c k? th? %d: "", i + 1);
+        scanf("" %[^\n]s"", dsHK[i].tenHK);
+        printf(""Nh?p ?i?m trung bình: "");
+        scanf(""%f"", &dsHK[i].diemTB);
+    }
+    int maxIndex = 0;
+    for (int i = 1; i < n; i++) {
+        if (dsHK[i].diemTB > dsHK[maxIndex].diemTB) {
+            maxIndex = i;
+        }
+    }
+    printf(""H?c k? có ?i?m TB cao nh?t: %s (%.2f)\n"", dsHK[maxIndex].tenHK, dsHK[maxIndex].diemTB);
+    return 0;
+}"										
+223	"S? d?ng c?u trúc PhieuMuaHang v?i các thành ph?n: mã phi?u, tên khách hàng, t?ng ti?n. Nh?p và in ra thông tin c?a các phi?u mua hàng."	"#include <stdio.h>
+
+typedef struct {
+    char maPhieu[10];
+    char tenKH[50];
+    float tongTien;
+} PhieuMuaHang;
+
+int main() {
+    int n;
+    printf(""Nh?p s? phi?u mua hàng: "");
+    scanf(""%d"", &n);
+    PhieuMuaHang dsPhieu[n];
+    for (int i = 0; i < n; i++) {
+        printf(""Nh?p mã phi?u th? %d: "", i + 1);
+        scanf(""%s"", dsPhieu[i].maPhieu);
+        printf(""Nh?p tên KH th? %d: "", i + 1);
+        scanf("" %[^\n]s"", dsPhieu[i].tenKH);
+        printf(""Nh?p t?ng ti?n: "");
+        scanf(""%f"", &dsPhieu[i].tongTien);
+    }
+    printf(""Danh sách phi?u mua hàng:\n"");
+    for (int i = 0; i < n; i++) {
+        printf(""Mã phi?u: %s, Tên KH: %s, T?ng ti?n: %.2f\n"", dsPhieu[i].maPhieu, dsPhieu[i].tenKH, dsPhieu[i].tongTien);
+    }
+    return 0;
+}"										
+224	"??nh ngh?a c?u trúc Book v?i các thành ph?n: tên sách, tác gi?, giá. Nh?p thông tin c?a 5 cu?n sách và in ra danh sách sách ?ó."	"#include <stdio.h>
+
+typedef struct {
+    char tenSach[50];
+    char tacGia[50];
+    float gia;
+} Book;
+
+int main() {
+    Book dsSach[5];
+    for (int i = 0; i < 5; i++) {
+        printf(""Nh?p tên sách th? %d: "", i + 1);
+        scanf("" %[^\n]s"", dsSach[i].tenSach);
+        printf(""Nh?p tác gi?: "");
+        scanf("" %[^\n]s"", dsSach[i].tacGia);
+        printf(""Nh?p giá: "");
+        scanf(""%f"", &dsSach[i].gia);
+    }
+    printf(""Danh sách sách:\n"");
+    for (int i = 0; i < 5; i++) {
+        printf(""Tên sách: %s, Tác gi?: %s, Giá: %.2f\n"", dsSach[i].tenSach, dsSach[i].tacGia, dsSach[i].gia);
+    }
+    return 0;
+}"										
+225	"S? d?ng c?u trúc DonHang v?i các thành ph?n: mã ??n hàng, ngày ??t hàng, t?ng ti?n. Tính t?ng ti?n c?a t?t c? các ??n hàng ?ã ??t."	"#include <stdio.h>
+
+typedef struct {
+    char maDH[10];
+    char ngayDat[20];
+    float tongTien;
+} DonHang;
+
+float tinhTongTien(DonHang dsDH[], int n) {
+    float sum = 0;
+    for (int i = 0; i < n; i++) {
+        sum += dsDH[i].tongTien;
+    }
+    return sum;
+}
+
+int main() {
+    int n;
+    printf(""Nh?p s? ??n hàng: "");
+    scanf(""%d"", &n);
+    DonHang dsDH[n];
+    for (int i = 0; i < n; i++) {
+        printf(""Nh?p mã ??n hàng th? %d: "", i + 1);
+        scanf(""%s"", dsDH[i].maDH);
+        printf(""Nh?p ngày ??t: "");
+        scanf(""%s"", dsDH[i].ngayDat);
+        printf(""Nh?p t?ng ti?n: "");
+        scanf(""%f"", &dsDH[i].tongTien);
+    }
+    printf(""T?ng ti?n các ??n hàng: %.2f\n"", tinhTongTien(dsDH, n));
+    return 0;
+}"										
